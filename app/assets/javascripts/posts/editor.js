@@ -129,7 +129,39 @@ $(document).ready(function() {
   });
 
   $('#myModal').on('shown.bs.modal', function (e) {
-    $("#search_characters").focus();
+    $("#search_characters").select2({
+      dropdownParent: $('#myModal .subber'),
+      minimumInputLength: 1,
+      ajax: {
+        delay: 200,
+        url: '/api/v1/characters',
+        dataType: 'json',
+        data: function(params) {
+          var data = {
+            q: params.term,
+            user_id: true,
+            page: params.page
+          };
+          return data
+        },
+        processResults: function (data, params) {
+          params.page = params.page || 1;
+          var total = this._request.getResponseHeader('Total');
+          if((params.page * 2) < total) { this.container.results.loadMore(); }
+          return {
+            results: data.results,
+            pagination: {
+              more: (params.page * 3) < total
+            }
+          }
+        },
+        cache: true
+      },
+      width: '300px'
+    });
+    $("#search_characters").select2('open');
+    $("#select2-dropdown input").first().focus();
+    $("#search_characters").on('select2:closing', function () { return false; });
   });
 
   $("#swap-alias").click(function () {

@@ -7,7 +7,7 @@
       .modal-body
         .subber.padding-10
           Search:
-          = text_field_tag :search_characters
+          = select_tag :search_characters, '', { prompt: current_user.username }
         .container-fluid
           .row
             .row-height

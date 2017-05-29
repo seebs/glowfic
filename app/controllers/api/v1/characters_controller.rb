@@ -20,9 +20,14 @@ class Api::V1::CharactersController < Api::ApiController
       char_ids = @post.replies.pluck('distinct character_id') + [@post.character_id]
       queryset = queryset.where(id: char_ids)
     end
+    queryset = queryset.where(user_id: current_user.id) if params[:user_id].present?
 
-    characters = paginate queryset, per_page: 25
-    render json: {results: characters}
+    characters = paginate queryset, per_page: 3
+    cjson = characters.map do |c|
+      next {id: c.id, name: c.name} unless c.template
+      {id: c.id, name: c.name, template: {id: c.template_id}}
+    end
+    render json: {results: cjson}
   end
 
   api! 'Load a single character as a JSON resource'
