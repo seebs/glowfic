@@ -92,6 +92,7 @@ Rails.application.routes.draw do
       resources :galleries, only: :show
       resources :posts, only: :show do
         resources :replies, only: :index
+        resources :characters, only: :index
       end
       resources :tags, only: :index
     end

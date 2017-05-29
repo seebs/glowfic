@@ -139,9 +139,12 @@ $(document).ready(function() {
         data: function(params) {
           var data = {
             q: params.term,
-            user_id: true,
             page: params.page
           };
+          if(typeof(gon) !== 'undefined') { 
+            data.post_id = gon.post_id
+            data.user_id = gon.current_user.id
+          }
           return data
         },
         processResults: function (data, params) {

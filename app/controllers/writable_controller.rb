@@ -22,6 +22,7 @@ class WritableController < ApplicationController
     @templates.reject! {|template| template.characters.empty? }
 
     gon.current_user = current_user.gon_attributes
+    gon.post_id = @post.try(:id)
   end
 
   def show_post(cur_page=nil)

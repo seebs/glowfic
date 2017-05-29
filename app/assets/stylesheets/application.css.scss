@@ -40,6 +40,12 @@
 #myModal .select2-container--below { display: none; }
 #myModal .select2-container--open { position: relative !important; top: -15px !important; left: 0px !important; }
 #myModal .select2-dropdown--below { background-color: transparent; border: 0px; }
+.modal-body{
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+#myModal li.active a { background-color: #8287a2; }
+#myModal li.active a:hover { background-color: #E3E3E3;}
 
 .inside {
   margin-top: 20px;
