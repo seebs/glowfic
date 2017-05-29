@@ -1,3 +1,44 @@
+#myModal.modal.fade{role: 'dialog'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{data: {dismiss: 'modal'}}= image_tag '/images/cross.png'
+        %h4.modal-title Choose Character
+      .modal-body
+        .subber.padding-10
+          Search:
+          = text_field_tag :search_characters
+        .container-fluid
+          .row
+            .row-height
+              .col-md-3.col-height
+                .inside-full-height
+                  %ul.nav.navbar-default.nav-stacked
+                    %li= link_to 'In Thread', '#'
+                    - (current_user.templates * 1).each do |tmplate|
+                      %li= link_to tmplate.name, '#'
+                    %li= link_to 'Templateless', '#'
+              .col-md-9.col-height
+                .sub In Thread
+                .gallery
+                  - @uniq_chars.each do |thread_char|
+                    .gallery-icon
+                      = icon_tag thread_char.default_icon
+                      %div= thread_char.name
+                      .character-screenname= "(#{thread_char.screenname})"
+                      .details= thread_char.template_name
+                    .gallery-icon
+                      = icon_tag thread_char.default_icon
+                      %div= thread_char.name
+                      .character-screenname= "(#{thread_char.screenname})"
+                      .details= thread_char.template_name
+                    .gallery-icon
+                      = icon_tag thread_char.default_icon
+                      %div= thread_char.name
+                      .character-screenname= "(#{thread_char.screenname})"
+                      .details= thread_char.template_name
+
+
 - if params[:view] == 'import'
   .post-header
     .padding-15 Import a post

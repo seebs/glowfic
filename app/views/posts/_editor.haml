@@ -33,7 +33,7 @@
       .post-author
         = item.user.username
         - if current_user.characters.present?
-          = image_tag swap_icon_url, id: 'swap-icon', alt: ">", title: 'Choose Character'
+          = image_tag swap_icon_url, id: 'swap-icon', alt: ">", title: 'Choose Character', data: {toggle: 'modal', target: '#myModal'}
           #character-selector.beige
             %b Choose Character
             = select_tag :active_character,

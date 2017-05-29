@@ -128,10 +128,8 @@ $(document).ready(function() {
     }
   });
 
-  $("#swap-icon").click(function () {
-    $('#character-selector').toggle();
-    $('#alias-selector').hide();
-    $('html, body').scrollTop($("#post-editor").offset().top);
+  $('#myModal').on('shown.bs.modal', function (e) {
+    $("#search_characters").focus();
   });
 
   $("#swap-alias").click(function () {
