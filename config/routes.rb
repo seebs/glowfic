@@ -123,6 +123,9 @@ Rails.application.routes.draw do
   resources :reports, only: [:index, :show]
   resources :bugs, only: :create
   resources :favorites, only: [:index, :create, :destroy]
+  match '/about' => 'about#index', as: :about, via: :get
+  match '/tos' => 'about#tos', as: :tos, via: :get
+  match '/privacy' => 'about#privacy', as: :privacy, via: :get
   match '/contribute' => 'contribute#index', as: :contribute, via: :get
   mount ResqueWeb::Engine => "/resque_web"
 end
