@@ -29,6 +29,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.validate_password = true
+    @user.tos_accepted_at = Time.zone.now
+
+    unless params[:tos].present?
+      signup_prep
+      flash.now[:error] = "You must accept the Terms and Conditions to use the Constellation."
+      render action: :new and return
+    end
 
     if params[:secret] != "ALLHAILTHECOIN"
       signup_prep
