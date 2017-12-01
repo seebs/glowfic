@@ -48,7 +48,7 @@
           = render partial: 'posts/list_item', collection: section_posts, as: :post, locals: {hide_continuity: true}
         - else
           %tr
-            %td.centered.padding-10.no-posts{ class: cycle('even','odd'), colspan: 6 } — No posts yet —
+            %td.no-items{ class: cycle('even','odd'), colspan: 6 } — No posts yet —
         %tr
           %td.continuity-spacer{colspan: 5}
       = render partial: 'posts/list_item', collection: @posts.select { |post| post.visible_to? (current_user) }, as: :post, locals: {hide_continuity: true}
