@@ -437,6 +437,9 @@ div.post-subheader { width: 100%; }
 .no-items { padding: 10px; text-align: center; }
 .no-items-alt { padding: 5px; text-align: center; }
 
+// Link at the bottom of threads to the top
+#post-top-link { text-align: center; margin: 10px; }
+
 // TODO: These should probably be in a users-related file
 .user-moiety { padding: 10px; text-align: center; width: 70px; }
 .user-date { padding: 10px; }
