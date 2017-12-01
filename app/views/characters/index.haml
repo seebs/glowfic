@@ -58,6 +58,6 @@
         = render partial: partial_type, locals: {name: "No Template", characters: @user.characters.where(template_id: nil).order('name asc'), show_new_character_button: @user.id == current_user&.id}
     - else
       %tr
-        %td.centered.padding-5{class: cycle('even', 'odd'), colspan: colspan} — No characters yet —
+        %td.no-items-alt{class: cycle('even', 'odd'), colspan: colspan} — No characters yet —
   - else
     = render partial: partial_type, locals: {name: nil, characters: @user.characters.includes(:template).order('name asc'), show_template: true}
