@@ -97,3 +97,6 @@
 .gallery-buttons { width: 70px; }
 
 .gallery-icon-count { width: 150px; text-align: center; }
+
+/* Preview icon box on galleries _add_new */
+#preview-box { width: 15px !important; padding: 0px; } // TODO: check if removing !important breaks anything
