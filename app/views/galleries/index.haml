@@ -33,7 +33,7 @@
             = image_tag "icons/bullet_arrow_down.png", class: 'vmid down-arrow'
             = image_tag "icons/bullet_arrow_up.png", class: 'vmid hidden up-arrow'
     %tr
-      %td.padding-5.hidden.odd{id: "icons-0", colspan: 4}
+      %td.hidden.odd{id: "icons-0", colspan: 4}
         = form_tag delete_multiple_icons_path, method: :delete do
           .gallery{style: 'padding: 0px;'}
           - if @user.id == current_user.try(:id)

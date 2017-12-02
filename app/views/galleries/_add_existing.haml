@@ -13,7 +13,7 @@
     %tr
       %th.sub Galleryless Icons
     %tr
-      %td.even.padding-5
+      %td.even
         - @unassigned.each do |icon|
           .gallery-icon
             = icon_tag icon, class: 'add-gallery-icon', :'data-id' => icon.id
@@ -29,7 +29,7 @@
           = gallery.name
           .float-right.gallery-box{id: "minmax-#{gallery.id}"} +
       %tr
-        %td.padding-5.hidden{class: cycle('even', 'odd'), id: "icons-#{gallery.id}"}
+        %td.hidden{class: cycle('even', 'odd'), id: "icons-#{gallery.id}"}
     %tr
       %td.form-table-ender.padding-5
         = submit_tag "Add Icons to Gallery", class: 'button'

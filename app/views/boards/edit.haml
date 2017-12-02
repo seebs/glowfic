@@ -29,7 +29,7 @@
       Saved
   %ul.sortable.table-list
     - @board_sections.each do |section|
-      %li.padding-5.section-ordered{class: cycle('even', 'odd'), data: {id: section.id, type: section.class.to_s, order: section.section_order}}
+      %li.section-ordered{class: cycle('even', 'odd'), data: {id: section.id, type: section.class.to_s, order: section.section_order}}
         .section-ordered-handle
           = image_tag "icons/arrow_double.png", title: 'Reorder', class: 'disabled-arrow', alt: '↕'
         = link_to section.name, board_section_path(section)
