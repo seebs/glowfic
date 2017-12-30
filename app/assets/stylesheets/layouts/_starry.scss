@@ -124,7 +124,7 @@ $font_color_subber_bold: #F3F3F3;
   $font_color_ender: #DADADA !global;
 } @else if $theme == 'dark' {
   $bg_color_head: #0D0B1E !global; // primary content header
-  $font_color_head_link: $font_color_link !global;
+  $font_color_head_link: $font_color_link !global; // TODO: check this
   $bg_color_sub: #131937 !global; // secondary content header
   $bg_color_subber: #484357 !global; // tertiary content header
   $bg_color_ender: #0D0B1E !global; // form table footer with submit
@@ -151,9 +151,10 @@ th, .content-header {
 }
 
 /* - content */
-$bg_color_even: #E3E3E3;
-$bg_color_odd: #D8D8D8;
-@if $theme == 'dark' {
+@if $theme != 'dark' {
+  $bg_color_even: #E3E3E3 !global;
+  $bg_color_odd: #D8D8D8 !global;
+} @else if $theme == 'dark' {
   $bg_color_even: #31323B !global;
   $bg_color_odd: #25262E !global;
 }
@@ -192,14 +193,16 @@ $font_color_post_description: #F3F3F3;
 .post-subheader { background-color: $bg_color_post_description; color: $font_color_post_description; }
 .post-navheader { background-color: $bg_color_navheader; }
 
-$bg_color_post_menu: #BCBCBC;
-$border_color_post_menu: #808080;
-$bg_color_menu_link_hover: #D3D3D3;
-@if $theme == 'dark' {
+@if $theme != 'dark' {
+  $bg_color_post_menu: #BCBCBC !global;
+  $border_color_post_menu: #808080 !global;
+  $bg_color_menu_link_hover: #D3D3D3 !global;
+} @else if $theme == 'dark' {
   $font_color_post_menu: #DADADA !global;
   $bg_color_post_menu: #191919 !global;
-  $bg_color_menu_link_hover: #252525;
-} @else if $theme == 'base' {
+  $bg_color_menu_link_hover: #252525 !global;
+}
+@if $theme == 'base' {
   $font_color_menu: #101010 !global;
 }
 #post-menu-box {
@@ -306,9 +309,10 @@ $font_color_paginate_link_disabled: #58546B;
 }
 
 /* - icons */
-$bg_color_icon: #D8D8D8;
-$bg_color_icon_credit: #D8D8D8;
-@if $theme == 'dark' {
+@if $theme != 'dark' {
+  $bg_color_icon: #D8D8D8 !global;
+  $bg_color_icon_credit: #D8D8D8 !global;
+} @else if $theme == 'dark' {
   $border_color_icon_selected: #B9BBEB !global; // selected icon border
   $bg_color_icon: #323232 !global;
   $bg_color_icon_credit: #323232 !global;
@@ -327,8 +331,10 @@ $bg_color_icon_credit: #D8D8D8;
 }
 
 /* - tag items */
-$font_color_tag_item: #444158;
-$font_color_tag_item_gallery: #F7F7F7;
+@if $theme != 'dark' {
+  $font_color_tag_item: #444158 !global;
+  $font_color_tag_item_gallery: #F7F7F7 !global;
+}
 @if $theme == 'light' {
   $bg_color_tag_item: #968BB4 !global;
 } @else if $theme == 'dark' {
