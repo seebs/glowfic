@@ -3,18 +3,25 @@
 $theme: 'light' !default;
 //$colors_white: #FFFFFF;
 $colors_bright: #FEFEFE;
+//$colors_lightgrey: #EEEEEE;
+//$colors_lighter: #DDDDDD;
+//$colors_light: #C5C5C5;
+//$colors_grey: #AAAAAA;
 //$colors_dark: #444444;
+//$colors_darker: #333333;
+$colors_black: #101010;
+
+//$colors_cream: #E5DFD1;
 //$colors_lightbrown: #B9B6AD;
 //$colors_lightishbrown: #9E9C93;
 //$colors_brown: #8B8687;
 //$colors_greybrown: #A3A1A0;
 //$colors_green: #3F7055;
 //$colors_blue: #4455AA;
+//$colors_lightred: #CC0000;
 //$colors_red: #880000;
 //$colors_greygreen: #B0BBA9;
-//$colors_lightgrey: #EEEEEE;
 //$colors_darkpurple: #3E384F;
-$colors_black: #101010;
 
 /* - header */
 @if $theme == 'light' {
