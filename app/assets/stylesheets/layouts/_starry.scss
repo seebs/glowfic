@@ -95,7 +95,6 @@ $font_color_search_box: #FEFEFE;
 .spacer-alt { background-color: $bg_color_spacer_alt; }
 
 /* - misc */
-$font_color_descriptions: #DADADA;
 @if $theme == 'light' {
   $bg_color_descriptions: #6F658D !global; // description subheadings on templates page ("single-description"), *not* posts
   $font_color_descriptions_link: #F3F3F3 !global;
@@ -108,14 +107,13 @@ $font_color_descriptions: #DADADA;
 }
 .single-description {
   background-color: $bg_color_descriptions;
-  color: $font_color_descriptions;
+  color: $font_color_page;
   a { color: $font_color_descriptions_link; }
   a:visited { color: $font_color_link_visited_alt; }
 }
 
 /* - content headers */
 $font_color_sub: #F3F3F3;
-$font_color_subber: #DADADA;
 $font_color_subber_bold: #F3F3F3;
 @if $theme == 'light' {
   $bg_color_head: #42416E !global; // primary content header
@@ -147,7 +145,7 @@ th, .content-header {
 .form-table-ender { background-color: $bg_color_ender; color: $font_color_ender; }
 .subber {
   background-color: $bg_color_subber;
-  color: $font_color_subber;
+  color: $font_color_page;
   &, a, a:visited { color: $font_color_link_visited_alt; }
   b { color: $font_color_subber_bold; }
 }
@@ -220,7 +218,6 @@ $bg_color_menu_link_hover: #D3D3D3;
   }
 }
 
-$font_color_selectionpopup: #DADADA;
 @if $theme == 'light' {
   $bg_color_selectionpopup: #6F658D !global; // selection popups like character/alias on posts#editor
   $bg_color_expander: #D8D8D8 !global; // expander on posts
@@ -231,13 +228,12 @@ $font_color_selectionpopup: #DADADA;
   $bg_color_selectionpopup: #484357 !global; // selection popups like character/alias on posts#editor
   $bg_color_expander: #9692A8 !global; // expander on posts
 }
-.selector-popup { background-color: $bg_color_selectionpopup; color: $font_color_selectionpopup; }
+.selector-popup { background-color: $bg_color_selectionpopup; color: $font_color_page; }
 @if $theme == 'dark' {
   .selector-popup { font-weight: normal; }
 }
 .post-expander { background-color: $bg_color_expander; }
 
-$font_color_icon_selector: #DADADA;
 @if $theme == 'light' {
   $bg_color_post_icon: #9498AC !global;
   $bg_color_icon_selector: #9692A8 !global;
@@ -254,7 +250,7 @@ $font_color_icon_selector: #DADADA;
 @if $theme == 'dark' {
   #current-icon-dropdown { color: $font_color_icon_dropdown; }
 }
-#reply-icon-selector { background-color: $bg_color_icon_selector; color: $font_color_icon_selector; }
+#reply-icon-selector { background-color: $font_color_page; color: $font_color_page; }
 
 $font_color_post_info: #F3F3F3;
 @if $theme == 'light' {
@@ -324,7 +320,7 @@ $bg_color_icon_credit: #D8D8D8;
 .icon-credit { background-color: $bg_color_icon_credit; }
 
 @if $theme == 'base' {
-  #character-icon-selector, .time-loaded { color: #DADADA; }
+  #character-icon-selector, .time-loaded { color: $font_color_page; }
 }
 @if $theme == 'dark' {
   #character-icon-selector, .time-loaded { color: $font_color_page; }
