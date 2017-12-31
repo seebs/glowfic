@@ -11,17 +11,31 @@ $colors_bright: #FEFEFE;
 //$colors_darker: #333333;
 $colors_black: #101010;
 
-//$colors_cream: #E5DFD1;
-//$colors_lightbrown: #B9B6AD;
-//$colors_lightishbrown: #9E9C93;
-//$colors_brown: #8B8687;
-//$colors_greybrown: #A3A1A0;
-//$colors_green: #3F7055;
-//$colors_blue: #4455AA;
-//$colors_lightred: #CC0000;
-//$colors_red: #880000;
-//$colors_greygreen: #B0BBA9;
-//$colors_darkpurple: #3E384F;
+$colors_gunpowder: #484357;
+$colors_concrete: #F3F3F3;
+$colors_manatee: #9692A8;
+$colors_scampi: #6565AE;
+$colors_mulledwine: #463C65;
+$colors_rum: #6F658D;
+$colors_bunting: #182152;
+$colors_bigstone: #131937;
+$colors_alto_brighter: #DADADA;
+$colors_alto_darker: #D8D8D8;
+$colors_santasgrey: #9C9AA4;
+$colors_dolphin: #645F8A;
+$colors_ebony: #13132F; // ebony dark'ness dementia raven way
+$colors_prelude: #CDC7E7;
+$colors_logan: #B5AFCB;
+$colors_periwinklegrey: #C6C6E5;
+$colors_santasgreyagain: #9498AC; // bah
+$colors_wildblueyonder: #8689B7;
+$colors_manateeagain: #8287A2; // bah
+$colors_fiord: #42416E;
+$colors_mineshaft: #323232;
+$colors_shark: #25262E;
+$colors_buntingagain: #111842; // bah
+$colors_ebonyagain: #0E0B1E; // bah
+$colors_ebonythethird: #0D0B1E; // bah × 2
 
 /* - header */
 @if $theme == 'light' {
