@@ -324,18 +324,18 @@ $font_color_post_info: $colors_concrete;
 .post-author, .post-author a, .post-author a:visited { color: $font_color_post_info; }
 
 $font_color_paginate_link: $colors_concrete;
-$font_color_page_visited: $font_color_link_visited_alt; //TODO: very replace this which even is it???
-$font_color_page_disabled: #58546B;
+$font_color_paginate_link_visited: $font_color_link_visited_alt; //TODO: very replace this which even is it???
+$font_color_paginate_link_disabled: #58546B;
 @if $theme == 'light' {
   $bg_color_paginate_link_hover: $colors_santasgrey_bluer !global;
-  $bg_color_page_current: $colors_manatee_lighter !global;
+  $bg_color_paginate_current_page: $colors_manatee_lighter !global;
 } @else if $theme == 'dark' or $theme == 'base' {
-  $bg_color_page_current: $colors_gunpowder !global;
+  $bg_color_paginate_current_page: $colors_gunpowder !global;
 }
-.pagination .current { background-color: $bg_color_page_current; }
+.pagination .current { background-color: $bg_color_paginate_current_page; }
 .pagination a { color: $font_color_paginate_link; }
-.pagination a:visited { color: $font_color_page_visited; }
-.pagination .disabled { color: $font_color_page_disabled; }
+.pagination a:visited { color: $font_color_paginate_link_visited; }
+.pagination .disabled { color: $font_color_paginate_link_disabled; }
 @if theme == 'light' {
   .pagination a:hover { background-color: $bg_color_paginate_link_hover; }
 }
