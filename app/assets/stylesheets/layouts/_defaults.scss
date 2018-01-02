@@ -66,7 +66,8 @@ $bg_color_linkbox_edit: $colors_blue !default;
 $bg_color_linkbox_favorite: $colors_blue !default;
 $bg_color_linkbox_delete: $colors_red !default;
 $bg_color_linkbox_dismiss: $colors_red !default;
-//$bg_color_linkbox_subber /* this is not styled differently on non-starries, where linkboxes are all colored the same, but is a necessary variable there */
+$bg_color_linkbox_subber: default !default; /* this is not styled differently on non-starries, where linkboxes are all colored the same, but is a necessary variable there */
+// This is definitely not actually right but not possible to get right; TODO consider splitting variable
 
 /* - inputs */
 $bg_color_input: $colors_white !default; // regular <input>
@@ -113,6 +114,7 @@ $bg_color_subber: $colors_greybrown !default; // tertiary content header
 $font_color_head: $colors_lightgrey !default;
 $font_color_sub: $colors_darkpurple !default;
 $font_color_subber: black !default;
+$font_color_subber_bold: black !default; // TODO: confirm
 
 $bg_color_ender: $bg_color_subber !default; // form table footer with submit
 $font_color_ender: black !default;
@@ -120,6 +122,7 @@ $font_color_ender: black !default;
 /* - content */
 $bg_color_even: #E3E3E3 !default;
 $bg_color_odd: #D8D8D8 !default;
+$bg_color_content_border: transparent !default; // from river, is 0-width in default
 
 // target: #D8D8D8;
 // from: #E3E3E3;
@@ -199,6 +202,7 @@ $bg_color_post_character: $colors_brown !default;
 $bg_color_post_screenname: $colors_greybrown !default;
 $bg_color_post_author: $colors_lightbrown !default;
 $font_color_post_info: $colors_black !default;
+$font_weight_post_info: default !default; // TODO: this is probably not actually right
 $font_color_post_screenname: $colors_black !default;
 
 $bg_color_post_character_narrow: $colors_lightbrown !default;
@@ -223,3 +227,6 @@ $bg_color_navbutton: $colors_greybrown !default;
 $bg_color_post_menu: $colors_brown !default;
 $border_color_post_menu: $colors_greybrown !default;
 $font_color_post_menu: $colors_black !default;
+
+
+$font_color_reply_footer: default !default; // from river // TODO: fix

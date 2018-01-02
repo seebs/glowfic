@@ -1,29 +1,10 @@
-@import 'variables';
-$theme: 'dark';
-@import '_starry';
+@import 'defaults';
 
 /* Hovering help box on post editor */
-$bg_color_popup_header: #0D0B1E;
-$font_color_popup_header: #EEEEEE;
-$border_color_popup_header: #28225D;
-$bg_color_popup_content: #211E2F;
-$font_color_popup_content: #DADADA;
-$border_color_popup: #444444;
-
 .ui-widget-header { background-color: $bg_color_popup_header; color: $font_color_popup_header; border-color: $border_color_popup_header; }
 .ui-widget-content { background-color: $bg_color_popup_content; color: $font_color_popup_content; }
 .ui-widget.ui-widget-content { border-color: $border_color_popup; }
 /* TODO: style 'X' button on hover when all the other forms are done */
-
-/* Darken input boxes */
-$font_color_input: #DADADA;
-$bg_color_input: #4D4B5B; // regular <input> /* for generic input boxes all over the place */
-$border_color_input: #625F73;
-$font_color_input_placeholder: #8884A0;
-$bg_color_mce_panel: #3B394A; /* MCE header & footer background */
-$bg_color_select2_highlight: #5B586B;
-$bg_color_select2_selected: #3F3D4C;
-$bg_color_select2_search: $bg_color_select2_highlight;
 
 /* - placeholders */
 ::-webkit-input-placeholder { color: $font_color_input_placeholder; }

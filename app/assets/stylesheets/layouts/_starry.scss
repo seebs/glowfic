@@ -1,14 +1,7 @@
 @import 'variables';
 
 $theme: 'light' !default;
-//$colors_white: #FFFFFF;
 $colors_bright: #FEFEFE;
-//$colors_lightgrey: #EEEEEE;
-//$colors_lighter: #DDDDDD;
-//$colors_light: #C5C5C5;
-//$colors_grey: #AAAAAA;
-//$colors_dark: #444444;
-//$colors_darker: #333333;
 $colors_black: #101010;
 
 $colors_gunpowder: #484357;
@@ -41,17 +34,10 @@ $colors_shark: #25262E;
 @if $theme == 'light' {
   $bg_color_header_middle: #41416E !global; // middle header strip with user items
   $bg_color_header_bottom: $colors_rum !global; // bottom header strip with navigation
-} @else if $theme == 'dark' or $theme == 'base'{
+} @else if $theme == 'dark' or $theme == 'base' {
   $bg_color_header_middle: #05050F !global; // middle header strip with user items
   $bg_color_header_bottom: $colors_gunpowder !global; // bottom header strip with navigation
 }
-#header {
-  background-color: transparent;
-  background-image: url(image-path("layouts/starry.jpg"));
-  background-position: right top;
-}
-#logo { background-color: transparent !important; }
-#user-info, #nav-top { background-color: $bg_color_header_middle; background-color: rgba($bg_color_header_middle, 0.9); }
 
 /* - links */
 @if $theme == 'light' or $theme == 'base' {
@@ -67,8 +53,6 @@ $colors_shark: #25262E;
 } @else if $theme == 'base' {
   $font_color_link_visited_alt: $colors_santasgrey !global;
 }
-a { color: $font_color_link; }
-a:visited { color: $font_color_link_visited; }
 
 /* - flashes */
 // these are the notifications that appear when you submit a form or get a message
@@ -84,24 +68,13 @@ $font_color_breadcrumbs_bold: $colors_concrete;
   $bg_color_flash_success: $colors_gunpowder !global; // success
   $bg_color_flash_inbox: $colors_gunpowder !global; // new message
   $bg_color_flash_breadcrumbs: $colors_bigstone !global; // breadcrumbs ("Continuities » Continuity » Section » Thread")
-  $font_color_flash: $colors_alto_brighter !global;
+  $font_color_flash: $colors_alto_brighter !global; // TODO: find and set $font_color_flash for others
 } @else if $theme == 'base' {
   $bg_color_flash_error: $colors_manatee_lighter !global; // error
   $bg_color_flash_success: $colors_manatee_lighter !global; // success
-  $bg_color_flash_inbox: $colors_manatee_lighter !global; // new message // TODO: See if we can differentiate these
+  $bg_color_flash_inbox: $colors_manatee_lighter !global; // new message
   $bg_color_flash_breadcrumbs: $colors_bunting_brighter !global; // breadcrumbs ("Continuities » Continuity » Section » Thread")
 }
-.flash.breadcrumbs {
-  background-color: $bg_color_flash_breadcrumbs;
-  &, a, a:visited { color: $font_color_link_visited_alt; } // TODO: replace this
-  b { color: $font_color_breadcrumbs_bold; } // TODO: Investigate why this is differentiated
-}
-.flash.success { background-color: $bg_color_flash_success;  }
-.flash.error { background-color: $bg_color_flash_error; }
-.flash.inbox { background-color: $bg_color_flash_inbox; }
-@if $theme == 'dark' {
-  .flash.success, .flash.error, .flash.inbox { color: $font_color_flash; }
-} // TODO: find and set $font_color_flash for others
 
 /* - main page */
 $font_color_page: $colors_alto_brighter;
@@ -112,7 +85,7 @@ $font_color_page: $colors_alto_brighter;
 } @else if $theme == 'base' {
   $bg_color_page: #6C697C !global; // overall page
 }
-body { background-color: $bg_color_page; /*color: $font_color_page;*/ } //TODO: Investigate whether explictly defining the font color here breaks anything; was explictly defined in starrydark but not in the others
+// TODO: Investigate whether explictly defining the font color here breaks anything; was explictly defined in starrydark but not in the others
 
 $font_color_search_box: $colors_bright;
 @if $theme == 'light' {
@@ -125,8 +98,6 @@ $font_color_search_box: $colors_bright;
   $bg_color_spacer_alt: $colors_bunting_brighter !global;
   $bg_color_search_box: $colors_bunting_brighter !global;
 }
-.search-box { background-color: $bg_color_search_box; color: $font_color_search_box; }
-.spacer-alt { background-color: $bg_color_spacer_alt; }
 
 /* - misc */
 @if $theme == 'light' {
@@ -135,12 +106,6 @@ $font_color_search_box: $colors_bright;
 } @else if $theme == 'dark' or $theme == 'base' {
   $font_color_descriptions_link: $colors_logan !global;
   $bg_color_descriptions: $colors_gunpowder !global; // description subheadings on templates page ("single-description"), *not* posts
-}
-.single-description {
-  background-color: $bg_color_descriptions;
-  color: $font_color_page;
-  a { color: $font_color_descriptions_link; }
-  a:visited { color: $font_color_link_visited_alt; } //TODO: replace this
 }
 
 /* - content headers */
@@ -167,19 +132,6 @@ $font_color_subber_bold: $colors_concrete;
   $font_color_head_link: $colors_logan !global; // TODO: check this
   $bg_color_subber: $colors_gunpowder !global; // tertiary content header
 }
-th, .content-header {
-  background-color: $bg_color_head;
-  a { color: $font_color_head_link; }
-  a:visited { color: $font_color_link_visited_alt; } // TODO: Replace this
-}
-.sub { color: $font_color_sub; background-color: $bg_color_sub; }
-.form-table-ender { background-color: $bg_color_ender; color: $font_color_ender; }
-.subber {
-  background-color: $bg_color_subber;
-  color: $font_color_page;
-  &, a, a:visited { color: $font_color_link_visited_alt; } // TODO: replace this
-  b { color: $font_color_subber_bold; }
-}
 
 /* - content */
 @if $theme == 'light' or $theme == 'base' {
@@ -190,24 +142,6 @@ th, .content-header {
   $bg_color_odd: $colors_shark !global;
 }
 $opacity_blockquote: 0.2;
-.even, .post-post, .post-reply:nth-child(even), #post-editor {
-  background-color: $bg_color_even;
-  @if $theme == 'dark' {
-    color: $font_color_page;
-  }
-  blockquote {
-    background-color: calculate-transparent-color($bg_color_even, $bg_color_odd, $opacity_blockquote);
-  }
-}
-.odd, .post-reply:nth-child(odd), .post-post + #post-editor, .post-post + a + #post-editor {
-  background-color: $bg_color_odd;
-  @if $theme == 'dark' {
-    color: $font_color_page;
-  }
-  blockquote {
-    background-color: calculate-transparent-color($bg_color_odd, $bg_color_even, $opacity_blockquote);
-  }
-}
 
 /* - replies.scss */
 $font_color_post_description: $colors_concrete;
@@ -222,8 +156,6 @@ $font_color_post_description: $colors_concrete;
 @if $theme == 'dark' or $theme == 'base' {
   $bg_color_post_description: $colors_gunpowder !global;
 }
-.post-subheader { background-color: $bg_color_post_description; color: $font_color_post_description; }
-.post-navheader { background-color: $bg_color_navheader; }
 
 $border_color_post_menu: #808080;
 @if $theme != 'dark' {
@@ -237,21 +169,6 @@ $border_color_post_menu: #808080;
 @if $theme == 'base' {
   $font_color_post_menu: $colors_black !global;
 }
-#post-menu-box {
-  @if $theme == 'dark' or $theme == 'base' {
-    color: $font_color_post_menu;
-  }
-  background-color: $bg_color_post_menu;
-  border-top: 1px solid $border_color_post_menu;
-  border-top: 1px solid rgba($border_color_post_menu, 0.5);
-
-  a { color: inherit; }
-  a:hover div { background-color: $bg_color_menu_link_hover; }
-  div {
-    border-bottom: 1px solid $border_color_post_menu;
-    border-bottom: 1px solid rgba($border_color_post_menu, 0.5);
-  }
-}
 
 @if $theme == 'light' {
   $bg_color_selectionpopup: $colors_rum !global; // selection popups like character/alias on posts#editor
@@ -264,12 +181,6 @@ $border_color_post_menu: #808080;
 @if $theme == 'dark' or $theme == 'base' {
   $bg_color_selectionpopup: $colors_gunpowder !global; // selection popups like character/alias on posts#editor
 }
-.selector-popup { background-color: $bg_color_selectionpopup; color: $font_color_page; }
-@if $theme == 'dark' {
-  .selector-popup { font-weight: normal; }
-}
-.post-expander { background-color: $bg_color_expander; }
-
 @if $theme == 'light' {
   $bg_color_post_icon: $colors_santasgrey_bluer !global;
   $bg_color_icon_selector: $colors_manatee_lighter !global;
@@ -282,13 +193,6 @@ $border_color_post_menu: #808080;
 @if $theme == 'dark' or $theme == 'base' {
   $bg_color_icon_selector: $colors_gunpowder !global;
 }
-.post-icon { background-color: $bg_color_post_icon; }
-#current-icon-dropdown { background-color: $bg_color_post_icon; }
-@if $theme == 'dark' {
-  #current-icon-dropdown { color: $font_color_icon_dropdown; }
-}
-#reply-icon-selector { background-color: $font_color_page; color: $font_color_page; }
-
 $font_color_post_info: $colors_concrete;
 @if $theme == 'light' {
   $bg_color_post_character: $colors_dolphin !global;
@@ -313,15 +217,6 @@ $font_color_post_info: $colors_concrete;
   $font_weight_post_info: bold !global;
   $font_color_post_screenname: $colors_santasgrey !global;
 }
-.post-character { font-weight: $font_weight_post_info; background-color: $bg_color_post_character; }
-.post-character, .post-character a, .post-character a:visited, { color: $font_color_post_info; }
-.post-screenname { font-weight: $font_weight_post_info; background-color: $bg_color_post_screenname; }
-.post-screenname, .post-screenname a, .post-screenname a:visited { color: $font_color_post_screenname; } // TODO: clean this up when messages are fixed to not use it
-@if theme == 'light' {
-  .post-screenname, .post-screenname a, .post-screenname a:visited { font-style: italic; }
-}
-.post-author { font-weight: $font_weight_post_info; background-color: $bg_color_post_author; }
-.post-author, .post-author a, .post-author a:visited { color: $font_color_post_info; }
 
 $font_color_paginate_link: $colors_concrete;
 $font_color_paginate_link_visited: $font_color_link_visited_alt; //TODO: very replace this which even is it???
@@ -332,13 +227,6 @@ $font_color_paginate_link_disabled: #58546B;
 } @else if $theme == 'dark' or $theme == 'base' {
   $bg_color_paginate_current_page: $colors_gunpowder !global;
 }
-.pagination .current { background-color: $bg_color_paginate_current_page; }
-.pagination a { color: $font_color_paginate_link; }
-.pagination a:visited { color: $font_color_paginate_link_visited; }
-.pagination .disabled { color: $font_color_paginate_link_disabled; }
-@if theme == 'light' {
-  .pagination a:hover { background-color: $bg_color_paginate_link_hover; }
-}
 
 /* - icons */
 @if $theme != 'dark' {
@@ -348,18 +236,6 @@ $font_color_paginate_link_disabled: #58546B;
   $border_color_icon_selected: #B9BBEB !global; // selected icon border
   $bg_color_icon: $colors_mineshaft !global;
   $bg_color_icon_credit: $colors_mineshaft !global;
-}
-@if $theme == 'dark' {
-  .selected-icon { border-color: $border_color_icon_selected; }
-}
-.replace-icon, .icons-box { background-color: $bg_color_icon; }
-.icon-credit { background-color: $bg_color_icon_credit; }
-
-@if $theme == 'base' {
-  #character-icon-selector, .time-loaded { color: $font_color_page; }
-}
-@if $theme == 'dark' {
-  #character-icon-selector, .time-loaded { color: $font_color_page; }
 }
 
 /* - tag items */
@@ -375,15 +251,6 @@ $font_color_paginate_link_disabled: #58546B;
   $bg_color_tag_item_odd: #1A1A22 !global;
 } @else if $theme == 'base' {
   $bg_color_tag_item: #2C2C5D !global;
-}
-@if $theme == 'dark' {
-  .tag-item { background-color: $bg_color_tag_item; color: $font_color_link; }
-  .even .tag-item { background-color: $bg_color_tag_item_even; }
-  .odd .tag-item { background-color: $bg_color_tag_item_odd; }
-}
-@if $theme != 'dark' {
-  tr.gallery-tags .tag-item { background-color: $bg_color_tag_item; color: $font_color_tag_item_gallery; }
-  .tag-item { color: $font_color_tag_item; }
 }
 
 /* - link-boxes */
@@ -407,17 +274,6 @@ $font_color_paginate_link_disabled: #58546B;
   $bg_color_linkbox_delete: $colors_mulledwine !global;
   $bg_color_linkbox_dismiss: $colors_mulledwine !global;
 }
-.link-box.action-new { background-color: $bg_color_linkbox_new; }
-.link-box.action-edit { background-color: $bg_color_linkbox_edit; }
-.link-box.action-favorite { background-color: $bg_color_linkbox_favorite; }
-.link-box.action-delete { background-color: $bg_color_linkbox_delete; }
-.link-box.action-dismiss { background-color: $bg_color_linkbox_dismiss; }
-
-.subber .link-box { background-color: $bg_color_linkbox_subber; }
-
-@if $theme == 'light' or $theme == 'base' {
-  #character-selector { font-weight: normal; } //TODO: this doesn't seem to exist in starrydark
-}
 
 /* - other buttons */
 @if $theme == 'light' {
@@ -427,5 +283,5 @@ $font_color_paginate_link_disabled: #58546B;
   $bg_color_viewbutton: $colors_mulledwine !global;
   $bg_color_viewbutton_selected: $colors_mulledwine !global;
 }
-.view-button, .post-navheader .view-button { background-color: $bg_color_viewbutton; }
-.view-button.selected { background-color: $bg_color_viewbutton_selected; }
+
+@import "_starry_selectors"
