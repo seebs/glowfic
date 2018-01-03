@@ -4,7 +4,13 @@
 .ui-widget-header { background-color: $bg_color_popup_header; color: $font_color_popup_header; border-color: $border_color_popup_header; }
 .ui-widget-content { background-color: $bg_color_popup_content; color: $font_color_popup_content; }
 .ui-widget.ui-widget-content { border-color: $border_color_popup; }
-/* TODO: style 'X' button on hover when all the other forms are done */
+@if $theme == 'plaindark' {
+  /* TODO: do this for starrydark */
+  .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active { background-color: $bg_color_popup_button; border-color: $border_color_popup_button; }
+  .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus { background-color: $bg_color_popup_button; border-color: $border_color_popup_button; }
+  .ui-widget-content a { color: $font_color_popup_link; }
+  /* TODO: hover, click */
+}
 
 /* - placeholders */
 ::-webkit-input-placeholder { color: $font_color_input_placeholder; }
@@ -25,7 +31,7 @@
 /* -- multiple / tag */
 .select2-container--default .select2-selection--multiple { background-color: $bg_color_input; color: $font_color_input; border-color: $border_color_input; }
 /* --- tag item */
-.select2-container--default .select2-selection--multiple .select2-selection__choice { background-color: $bg_color_select2_highlight; border-color: $border_color_input; } /* TODO: check with Aestrix at a better time */
+.select2-container--default .select2-selection--multiple .select2-selection__choice { background-color: $bg_color_select2_highlight; border-color: $border_color_input; }
 /* -- single */
 .select2-container--default .select2-selection--single { background-color: $bg_color_input; color: $font_color_input; border-color: $border_color_input; }
 .select2-container--default .select2-selection--single .select2-selection__rendered { color: $font_color_input; }
@@ -36,7 +42,7 @@
 /* --- input */
 .select2-container--default .select2-search--dropdown .select2-search__field { background-color: $bg_color_select2_search; color: $font_color_input; border-color: $border_color_input; }
 /* --- disabled input */
-.select2-container--default.select2-container--disabled .select2-selection--single { background-color: $bg_color_mce_panel; color: $font_color_input; border-color: $border_color_input; } /* TODO: check with Aestrix at a better time */
+.select2-container--default.select2-container--disabled .select2-selection--single { background-color: $bg_color_mce_panel; color: $font_color_input; border-color: $border_color_input; }
 
 /* HTML written editor */
 #post-editor input:not([type='submit']), #post-editor textarea, #message_form input:not([type='submit']), #message_form textarea { background-color: $bg_color_input; color: $font_color_input; border-color: $border_color_input; }
@@ -51,4 +57,4 @@
 #content .mce-ico { color: $font_color_input; }
 /* footer: 'powered by' text */
 #content .mce-branding-powered-by { background-color: $bg_color_mce_panel; border-color: $border_color_input; }
-#content .mce-label { color: rgba($font_color_input, 0.8); text-shadow: none; }
+#content .mce-label { color: rgba($font_color_input, $opacity_mce_label); text-shadow: none; }
