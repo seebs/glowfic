@@ -30,6 +30,18 @@ $colors_fiord: #42416E;
 $colors_mineshaft: #323232;
 $colors_shark: #25262E;
 
+
+/* - main page */
+$font_color_page: $colors_alto_brighter;
+@if $theme == 'starrylight' {
+  $bg_color_page: #B0AFB7 !global; // overall page
+} @else if $theme == 'starrydark' {
+  $bg_color_page: #211E2F !global; // overall page
+} @else if $theme == 'starrynil' {
+  $bg_color_page: #6C697C !global; // overall page
+}
+// TODO: Investigate whether explictly defining the font color here breaks anything; was explictly defined in starrydark but not in the others
+
 /* - header */
 @if $theme == 'starrylight' {
   $bg_color_header_middle: #41416E !global; // middle header strip with user items
@@ -75,17 +87,6 @@ $font_color_breadcrumbs_bold: $colors_concrete;
   $bg_color_flash_inbox: $colors_manatee_lighter !global; // new message
   $bg_color_flash_breadcrumbs: $colors_bunting_brighter !global; // breadcrumbs ("Continuities » Continuity » Section » Thread")
 }
-
-/* - main page */
-$font_color_page: $colors_alto_brighter;
-@if $theme == 'starrylight' {
-  $bg_color_page: #B0AFB7 !global; // overall page
-} @else if $theme == 'starrydark' {
-  $bg_color_page: #211E2F !global; // overall page
-} @else if $theme == 'starrynil' {
-  $bg_color_page: #6C697C !global; // overall page
-}
-// TODO: Investigate whether explictly defining the font color here breaks anything; was explictly defined in starrydark but not in the others
 
 $font_color_search_box: $colors_bright;
 @if $theme == 'starrylight' {

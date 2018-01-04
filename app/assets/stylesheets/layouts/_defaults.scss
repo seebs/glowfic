@@ -26,6 +26,12 @@ $colors_black: #101010;
 /* Semantic colors */
 // colors listed here should be named according to where and how they are used, to allow layouts to better recolor the site
 
+/* - main page */
+$bg_color_page: #E5DFD1 !default; // overall page
+$font_color_page: $colors_black !default;
+
+$font_color_content: $colors_dark !default; // body
+
 /* - header */
 $font_color_header_link: $colors_bright !default; // header links
 $font_color_header_link_hover: $colors_brown !default; // header links (hover)
@@ -33,12 +39,6 @@ $font_color_header_link_hover: $colors_brown !default; // header links (hover)
 $bg_color_header_top: $colors_green !default; // top header strip for logo
 $bg_color_header_middle: $colors_darkpurple !default; // middle header strip with user items
 $bg_color_header_bottom: $colors_lightbrown !default; // bottom header strip with navigation
-
-/* - main page */
-$bg_color_page: #E5DFD1 !default; // overall page
-$font_color_page: $colors_black !default;
-
-$font_color_content: $colors_dark !default; // body
 
 /* - links */
 $font_color_link: $colors_green !default; // link

@@ -1,6 +1,9 @@
 @import 'defaults';
 
-$theme: 'light' !default;
+$theme: '' !default;
+
+/* - main page */
+body { background-color: $bg_color_page; /*color: $font_color_page;*/ } //TODO: Investigate whether explictly defining the font color here breaks anything; was explictly defined in starrydark but not in the others
 
 /* - header */
 #header {
@@ -28,9 +31,6 @@ a:visited { color: $font_color_link_visited; }
 @if $theme == 'starrydark' {
   .flash.success, .flash.error, .flash.inbox { color: $font_color_flash; }
 } // TODO: find and set $font_color_flash for others
-
-/* - main page */
-body { background-color: $bg_color_page; /*color: $font_color_page;*/ } //TODO: Investigate whether explictly defining the font color here breaks anything; was explictly defined in starrydark but not in the others
 
 .search-box { background-color: $bg_color_search_box; color: $font_color_search_box; }
 .spacer-alt { background-color: $bg_color_spacer_alt; }
