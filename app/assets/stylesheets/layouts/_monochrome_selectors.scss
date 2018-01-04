@@ -4,8 +4,8 @@
 body { background-color: $bg_color_page; }
 
 /* - header */
-#header #logo { background-color: $bg_color_header_top; }
-#header #user-info, #header #nav-top { background-color: $bg_color_header_middle; }
+#logo { background-color: $bg_color_header_top; }
+#user-info, #nav-top { background-color: $bg_color_header_middle; }
 
 /* - links */
 a { color: $font_color_link; }
