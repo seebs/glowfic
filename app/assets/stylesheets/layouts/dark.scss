@@ -63,7 +63,9 @@ $font_color_icon_selector: #111111;
 $bg_color_post_character: #595959;
 $bg_color_post_screenname: #515151;
 $bg_color_post_author: #4D4C4C;
-//$bg_color_post_author_narrow: $colors_brown; // these are flipped from not-narrow mode to make the quick-switcher blend in // TODO: Should these flip on dark too?
+//$bg_color_post_author_narrow: $colors_brown;
+// these are flipped from not-narrow mode to make the quick-switcher blend in
+// TODO: Should these flip on dark too?
 $font_color_post_info: #A2A2A2;
 
 // TODO: Check pagination displays fine in this theme
@@ -77,6 +79,13 @@ $bg_color_icon_credit: #444D3F;
 /* - tag items */
 $bg_color_tag_item: #85837C;
 $font_color_tag_item: #DDDDDD;
+
+/* - link-boxes */
+$bg_color_linkbox_new: #DDDDDD;
+$bg_color_linkbox_edit: #DDDDDD;
+$bg_color_linkbox_favorite: #DDDDDD;
+$bg_color_linkbox_delete: #DDDDDD;
+$bg_color_linkbox_dismiss: #DDDDDD;
 
 /* - other buttons */
 $bg_color_viewbutton: #85837C;

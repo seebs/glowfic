@@ -88,7 +88,11 @@ table { border-color: #555; } // TODO: what does this style
 .tag-item { background-color: $bg_color_tag_item; color: $font_color_tag_item; }
 
 /* link-boxes*/
-.link-box { color: #DDDDDD; }
+.link-box.action-new { background-color: $bg_color_linkbox_new; }
+.link-box.action-edit { background-color: $bg_color_linkbox_edit; }
+.link-box.action-favorite { background-color: $bg_color_linkbox_favorite; }
+.link-box.action-delete { background-color: $bg_color_linkbox_delete; }
+.link-box.action-dismiss { background-color: $bg_color_linkbox_dismiss; }
 
 /* - other buttons */
 .view-button {
