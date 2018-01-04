@@ -74,11 +74,11 @@ th, .content-header { background-color: $bg_color_head; color: $font_color_head;
 .post-screenname { background-color: $bg_color_post_screenname; color: $font_color_post_info; }
 .post-author { background-color: $bg_color_post_author; color: $font_color_post_info; }
 
-// TODO: Check pagination displays fine in this theme
-
 #post-menu-box { color: $font_color_post_menu }
 
 table { border-color: #555; } // TODO: what does this style
+
+// TODO: Check pagination displays fine in this theme
 
 /* - icons */
 .replace-icon, .icons-box { background-color: $bg_color_icon; }
@@ -87,7 +87,7 @@ table { border-color: #555; } // TODO: what does this style
 /* - tag items */
 .tag-item { background-color: $bg_color_tag_item; color: $font_color_tag_item; }
 
-/* link-boxes*/
+/* - link-boxes */
 .link-box.action-new { background-color: $bg_color_linkbox_new; }
 .link-box.action-edit { background-color: $bg_color_linkbox_edit; }
 .link-box.action-favorite { background-color: $bg_color_linkbox_favorite; }
