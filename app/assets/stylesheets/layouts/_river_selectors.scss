@@ -4,18 +4,19 @@
 body { background-color: $bg_color_page; }
 
 /* - header */
-#logo { background-color: $bg_color_header_top; }
 #header { background-color: $bg_color_header_bottom; }
-#nav-top, #user-info { background-color: $bg_color_header_middle; }
+#logo { background-color: $bg_color_header_top; }
+#user-info, #nav-top { background-color: $bg_color_header_middle; }
 
 /* - links */
 a { color: $font_color_link; }
 a:visited { color: $font_color_link_visited; }
 
 /* - flashes */
+// these are the notifications that appear when you submit a form or get a message
+.flash.breadcrumbs { background-color: $bg_color_flash_breadcrumbs; }
 .flash.success { background-color: $bg_color_flash_success; }
 .flash.inbox { background-color: $bg_color_flash_inbox; }
-.flash.breadcrumbs { background-color: $bg_color_flash_breadcrumbs; }
 
 /* - content headers */
 .sub { background-color: $bg_color_sub; }
@@ -34,9 +35,6 @@ a:visited { color: $font_color_link_visited; }
 
 .post-navheader { background-color: $bg_color_navheader; }
 
-.pagination a:visited { color: $font_color_paginate_link_visited; }
-.pagination .current { background-color: $bg_color_paginate_current_page; }
-
 .post-expander { background-color: $bg_color_expander; }
 
 .post-icon { background-color: $bg_color_post_icon; }
@@ -47,6 +45,10 @@ a:visited { color: $font_color_link_visited; }
 .post-character a, .post-character a:visited { color: $font_color_post_info; }
 .post-screenname { background-color: $bg_color_post_screenname; }
 .post-author { background-color: $bg_color_post_author; }
+
+// TODO: Check pagination displays fine in this theme
+.pagination .current { background-color: $bg_color_paginate_current_page; }
+.pagination a:visited { color: $font_color_paginate_link_visited; }
 
 /* - icons */
 .replace-icon, .icons-box { background-color: $bg_color_icon; }
