@@ -68,7 +68,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
     scenario "Post" do
       Timecop.freeze(desired_time) do
         other_user = create(:user, username: 'John Doe')
-        post = create(:post, user: other_user, subject: 'test subject', board: create(:board, name: 'test board'))
+        post = create(:post, user: other_user, subject: 'test subject', board: create(:board, name: 'test board', id: 5))
         create(:reply, post: post, user: user)
         30.times do |i|
           if i.even? then
@@ -84,7 +84,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
 
     scenario "Post#Edit" do
       Timecop.freeze(desired_time) do
-        post = create(:post, user: user, subject: 'test subject', board: create(:board, name: 'test board'))
+        post = create(:post, user: user, subject: 'test subject', board: create(:board, name: 'test board', id: 5))
         visit edit_post_path(post)
       end
       expect(page).to match_expectation
