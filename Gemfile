@@ -62,7 +62,6 @@ group :development, :test do
   gem 'seed_dump', '~> 3.2'
   gem 'thin'
   gem 'rspec-rails'
-  gem 'rspec-page-regression'
 end
 
 group :test do
@@ -70,8 +69,10 @@ group :test do
   gem 'codeclimate-test-reporter', '~> 1.0.0'
   gem 'factory_bot_rails'
   gem 'json'
+  gem 'poltergeist'
   gem 'rails-controller-testing'
   gem 'resque_spec'
+  gem 'rspec-page-regression'
   gem 'simplecov'
   gem 'timecop'
   gem 'webmock'
