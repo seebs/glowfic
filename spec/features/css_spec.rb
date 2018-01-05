@@ -40,7 +40,9 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
         new_user = create(:user, username: 'JohnDoe22')
         other_user = create(:user, username: 'JohnDoe33')
         board = create(:board, name: 'test board')
-        3.times { create(:board_section, board: board) }
+        3.times do |i|
+          create(:board_section, board: board, name: "TestSection#{i+1}")
+        end
         2.times { create(:post, board: board, user: new_user, subject: 'test subject') }
         create(:post, board: board, user: other_user, subject: 'test subject')
         board.board_sections.order(:section_order).each do |section|
