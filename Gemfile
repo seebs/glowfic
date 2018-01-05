@@ -61,6 +61,7 @@ group :development, :test do
   gem 'seed_dump', '~> 3.2'
   gem 'thin'
   gem 'rspec-rails'
+  gem 'rspec-page-regression'
 end
 
 group :test do
