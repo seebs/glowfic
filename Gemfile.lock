@@ -77,6 +77,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chunky_png (1.3.8)
+    cliver (0.3.2)
     codeclimate-test-reporter (1.0.8)
       simplecov (<= 0.13)
     coffee-rails (4.2.2)
@@ -190,11 +192,17 @@ GEM
     parallel (1.12.1)
     parser (2.4.0.2)
       ast (~> 2.3)
+    oily_png (1.2.1)
+      chunky_png (~> 1.3.7)
     pg (0.21.0)
     pg_search (2.1.2)
       activerecord (>= 4.2)
       activesupport (>= 4.2)
       arel (>= 6)
+    poltergeist (1.17.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
     power_assert (1.1.1)
     powerpack (0.1.1)
     public_suffix (3.0.1)
@@ -292,6 +300,10 @@ GEM
       rspec-core (>= 3.0.0)
       rspec-expectations (>= 3.0.0)
       rspec-mocks (>= 3.0.0)
+    rspec (3.7.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
     rspec-core (3.7.0)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
@@ -300,6 +312,12 @@ GEM
     rspec-mocks (3.7.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
+    rspec-page-regression (0.4.2)
+      activesupport
+      oily_png
+      poltergeist
+      rspec (~> 3.0)
+      which_works
     rspec-rails (3.7.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -399,6 +417,7 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    which_works (1.0.2)
     will_paginate (3.1.6)
     xpath (2.1.0)
       nokogiri (~> 1.3)
@@ -452,6 +471,7 @@ DEPENDENCIES
   resque-web
   resque_mailer
   resque_spec
+  rspec-page-regression
   rspec-rails
   rubocop
   sanitize
