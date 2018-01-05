@@ -78,6 +78,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
           end
         end
         visit post_path(post, page: 2)
+        sleep(0.5)
       end
       expect(page).to match_expectation
     end
@@ -86,6 +87,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
       Timecop.freeze(desired_time) do
         post = create(:post, user: user, subject: 'test subject', board: create(:board, name: 'test board', id: 5))
         visit edit_post_path(post)
+        sleep(0.5)
       end
       expect(page).to match_expectation
     end
