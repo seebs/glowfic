@@ -268,7 +268,7 @@ $font_color_paginate_link_disabled: #58546B;
 } @else if $theme == 'starrynil' {
   $bg_color_linkbox_subber: #66608B !global;
 }
-@if $theme == 'starrydark' or theme == 'starrynil' {
+@if $theme == 'starrydark' or $theme == 'starrynil' {
   $bg_color_linkbox_new: $colors_mulledwine !global;
   $bg_color_linkbox_edit: $colors_mulledwine !global;
   $bg_color_linkbox_favorite: $colors_mulledwine !global;
