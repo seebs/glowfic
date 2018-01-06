@@ -159,7 +159,7 @@ $font_color_post_description: $colors_concrete;
 }
 
 $border_color_post_menu: #808080;
-@if $theme != 'starrydark' {
+@if $theme == 'starrylight' or $theme == 'starrynil' {
   $bg_color_post_menu: #BCBCBC !global;
   $bg_color_menu_link_hover: #D3D3D3 !global;
 } @else if $theme == 'starrydark' {
