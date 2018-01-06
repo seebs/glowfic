@@ -277,7 +277,7 @@ $font_color_paginate_link_disabled: #58546B;
 }
 
 /* - other buttons */
-@if $theme == 'light' {
+@if $theme == 'starrylight' {
   $bg_color_viewbutton: $colors_scampi !global;
   $bg_color_viewbutton_selected: $colors_scampi !global;
 } @else if $theme == 'starrydark' or $theme == 'starrynil' {
