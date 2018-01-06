@@ -4,6 +4,9 @@ $theme: '' !default;
 
 /* - main page */
 body { background-color: $bg_color_page; /*color: $font_color_page;*/ } //TODO: Investigate whether explictly defining the font color here breaks anything; was explictly defined in starrydark but not in the others
+@if $theme == 'starrydark' {
+  body { color: $font_color_page; } // Note: not defining this here breaks things
+}
 
 /* - header */
 #header {
