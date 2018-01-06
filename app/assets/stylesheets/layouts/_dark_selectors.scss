@@ -3,6 +3,8 @@
 /* - main page */
 body { background-color: $bg_color_page; color: $font_color_page; }
 
+#content { background-color: $bg_color_page; color: $font_color_content; }
+
 /* - header */
 #header {
   background-color: $bg_color_header_bottom;
