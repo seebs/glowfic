@@ -86,20 +86,16 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
       let (:other_user) { create(:user, username: 'John Doe') }
       let (:character1) { create(:character, name: "Alice", user: user) }
       let (:post) {
-        Timecop.freeze(desired_time) do
-          warnings = []
-          5.times do |i|
+        post = Timecop.freeze(desired_time) do
+          warnings = Array.new(5) do |i|
             warnings += [create(:content_warning, name: "warning #{i+1}")]
           end
-          settings = []
-          2.times do |i|
+          settings = Array.new(2) do |i|
             settings += [create(:setting, name: "test setting #{i+1}")]
           end
-          labels = []
-          3.times do |i|
+          labels = Array.new(3) do |i|
             labels += [create(:label, name: "test tag #{i+1}")]
           end
-          character2 = create(:character, name: "Bob", user: other_user)
           create(:post,
             user: user,
             character: character1,
@@ -110,6 +106,12 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
             content_warnings: warnings,
             labels: labels
           )
+          post
+        end
+      }
+      before (:each) {
+        Timecop.freeze(desired_time) do
+          character2 = create(:character, name: "Bob", user: other_user)
           30.times do |i|
             if i.even?
               create(:reply, post: post, user: other_user, character: character2)
