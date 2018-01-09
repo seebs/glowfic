@@ -113,9 +113,9 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
         Timecop.freeze(desired_time) do
           character2 = create(:character, name: "Bob", user: other_user)
           30.times do |i|
-            if i.even?
+            if i.even? then
               create(:reply, post: post, user: other_user, character: character2)
-            elsif i.odd?
+            elsif i.odd? then
               create(:reply, post: post, user: user, character: character1)
             end
           end
