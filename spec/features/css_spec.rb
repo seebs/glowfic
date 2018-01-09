@@ -88,13 +88,13 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
       let (:post) {
         post = Timecop.freeze(desired_time) do
           warnings = Array.new(5) do |i|
-            warnings += [create(:content_warning, name: "warning #{i+1}")]
+            create(:content_warning, name: "warning #{i+1}")
           end
           settings = Array.new(2) do |i|
-            settings += [create(:setting, name: "test setting #{i+1}")]
+            create(:setting, name: "test setting #{i+1}")
           end
           labels = Array.new(3) do |i|
-            labels += [create(:label, name: "test tag #{i+1}")]
+            create(:label, name: "test tag #{i+1}")
           end
           create(:post,
             user: user,
@@ -148,8 +148,8 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
       end
 
       scenario "Icon Picker" do
+        user.update_attributes(default_editor: 'html')
         Timecop.freeze(desired_time) do
-          user.update_attributes(default_editor: 'html')
           galleries = []
           3.times do |i|
             gallery = create(:gallery, user: user)
