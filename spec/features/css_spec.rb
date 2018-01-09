@@ -93,6 +93,20 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
       end
       expect(page).to match_expectation
     end
+
+    scenario "Gallery" do
+      Timecop.freeze(desired_time) do
+        4.times do |i|
+          create(:gallery_group, user: user, name: "Tag#{i+1}")
+        end
+        gallery = create(:gallery, user: user, gallery_groups: GalleryGroup.all)
+        10.times do |i|
+          gallery.icons += [create(:icon, url: "https://dummyimage.com/100x100/000/fff.png", keyword: i)]
+        end
+        visit gallery_path(gallery)
+      end
+      expect(page).to match_expectation
+    end
   end
 
   ['default', 'dark', 'starry', 'starrydark', 'starrylight', 'monochrome', 'river', 'iconless'].each do |type|
