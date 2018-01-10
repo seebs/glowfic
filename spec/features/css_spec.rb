@@ -162,7 +162,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
           visit post_path(post, page: 2)
           sleep(0.5)
         end
-        page.find('a', :text => /^1$/).hover
+        page.first('a', :text => /^1$/).hover
         expect(page).to match_expectation
       end
 
