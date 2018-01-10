@@ -18,11 +18,9 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
 
     scenario "Recently Updated" do
       Timecop.freeze(desired_time) do
-        4.times { create(:board, name: 'test board').destroy }
-        new_user = create(:user, username: 'JohnDoe11')
-        board = create(:board, name: 'test board')
+        board = create(:board, name: 'Testing Area', creator: user)
         26.times do |i|
-          create(:post, user: new_user, board: board, subject: "test subject #{i+1}")
+          create(:post, user: user, board: board, subject: "test subject #{i+1}")
         end
         visit posts_path
       end
@@ -38,16 +36,15 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
 
     scenario "Board" do
       Timecop.freeze(desired_time) do
-        new_user = create(:user, username: 'JohnDoe22')
-        other_user = create(:user, username: 'JohnDoe33')
-        board = create(:board, name: 'test board')
+        other_user = create(:user, username: 'John Doe')
+        board = create(:board, name: 'Testing Area')
         3.times do |i|
-          create(:board_section, board: board, name: "TestSection#{i+1}")
+          create(:board_section, board: board, name: "Test Section #{i+1}")
         end
-        2.times { create(:post, board: board, user: new_user, subject: 'test subject') }
+        2.times { create(:post, board: board, user: user, subject: 'test subject') }
         create(:post, board: board, user: other_user, subject: 'test subject')
         board.board_sections.order(:section_order).each do |section|
-          create(:post, board: board, section: section, user: new_user, subject: 'test subject')
+          create(:post, board: board, section: section, user: user, subject: 'test subject')
           create(:post, board: board, section: section, user: other_user, subject: 'test subject')
         end
         visit board_path(board)
