@@ -19,15 +19,15 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
 
     scenario "Recently Updated" do
       board = Timecop.freeze(desired_time) { create(:board, name: 'Testing Area', creator: user) }
-      post1 = Timecop.freeze(desired_time + 1.minute) { create(:post, user: user, board: board, subject: "test subject 1", num_replies: 24, id: 101) }
-      post2 = Timecop.freeze(desired_time + 2.minutes) { create(:post, user: user, board: board, subject: "test subject 2", num_replies: 28) }
+      post1 = Timecop.freeze(desired_time - 1.minute) { create(:post, user: user, board: board, subject: "test subject 1", num_replies: 24, id: 101) }
+      post2 = Timecop.freeze(desired_time - 2.minutes) { create(:post, user: user, board: board, subject: "test subject 2", num_replies: 28) }
       3.upto(76) do |i|
-        Timecop.freeze(desired_time + i.minutes) do
+        Timecop.freeze(desired_time - i.minutes) do
           create(:post, user: user, board: board, subject: "test subject #{i}")
         end
       end
 
-      Timecop.freeze(desired_time + 1.day) do
+      Timecop.freeze(desired_time) do
         post2.mark_read(user)
         visit post_path(post1)
         visit posts_path(page: 2)
@@ -96,11 +96,11 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
 
     scenario "Gallery" do
       1.upto(4) do |i|
-        Timecop.freeze(desired_time + i.minutes) do
+        Timecop.freeze(desired_time - i.minutes) do
           create(:gallery_group, user: user, name: "Tag#{i}")
         end
       end
-      Timecop.freeze(desired_time + 1.day) do
+      Timecop.freeze(desired_time) do
         gallery = create(:gallery, user: user, gallery_groups: GalleryGroup.all)
         gallery.icons = Array.new(10) do |i|
           create(:icon, url: "https://dummyimage.com/100x100/000/fff.png", user: user, keyword: i)
@@ -115,21 +115,21 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
       let(:character1) { create(:character, name: "Alice", user: user) }
       let(:post) do
         warnings = Array.new(5) do |i|
-          Timecop.freeze(desired_time + i.minutes) do
+          Timecop.freeze(desired_time - i.minutes) do
             create(:content_warning, name: "warning #{i+1}", user: user)
           end
         end
         settings = Array.new(2) do |i|
-          Timecop.freeze(desired_time + i.minutes) do
+          Timecop.freeze(desired_time - i.minutes) do
             create(:setting, name: "test setting #{i+1}", user: user)
           end
         end
         labels = Array.new(3) do |i|
-          Timecop.freeze(desired_time + i.minutes) do
+          Timecop.freeze(desired_time - i.minutes) do
             create(:label, name: "test tag #{i+1}", user: user)
           end
         end
-        Timecop.freeze(desired_time + 1.day) do
+        Timecop.freeze(desired_time) do
           create(:post,
             user: user,
             character: character1,
