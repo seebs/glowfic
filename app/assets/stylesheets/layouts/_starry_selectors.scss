@@ -145,7 +145,7 @@ th, .content-header {
 
 /* - tag items */
 @if $theme == 'starrydark' {
-  .tag-item { background-color: $bg_color_tag_item; color: $font_color_link; }
+  .tag-item, tr.gallery-tags .tag-item { background-color: $bg_color_tag_item; color: $font_color_link; }
   .even .tag-item { background-color: $bg_color_tag_item_even; }
   .odd .tag-item { background-color: $bg_color_tag_item_odd; }
 }
