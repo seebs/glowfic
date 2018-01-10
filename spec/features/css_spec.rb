@@ -102,13 +102,13 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
       let(:post) do
         Timecop.freeze(desired_time) do
           warnings = Array.new(5) do |i|
-            create(:content_warning, name: "warning #{i+1}")
+            create(:content_warning, name: "warning #{i+1}", user: user)
           end
           settings = Array.new(2) do |i|
-            create(:setting, name: "test setting #{i+1}")
+            create(:setting, name: "test setting #{i+1}", user: user)
           end
           labels = Array.new(3) do |i|
-            create(:label, name: "test tag #{i+1}")
+            create(:label, name: "test tag #{i+1}", user: user)
           end
           create(:post,
             user: user,
