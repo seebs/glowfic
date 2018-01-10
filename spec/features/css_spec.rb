@@ -4,12 +4,13 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
   let(:desired_time) { Time.zone.local(2018) }
 
   shared_examples_for "layout" do |layout|
+    let(:avatar) { create(:icon, url: "https://dummyimage.com/100x100/000/fff.png", user: user, keyword: "a") }
     let(:user) {
       create(:user,
         username: 'Jane Doe',
         email: 'fake303@faker.com',
         password: 'known',
-        avatar: create(:icon, url: "https://dummyimage.com/100x100/000/fff.png", user: user, keyword: "a")
+        avatar: avatar
       )
     }
 
