@@ -33,8 +33,9 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
         post3.mark_read(user)
         visit post_path(post1)
         visit posts_path(page: 2)
-        create(:reply, post: post1, user: user)
-        create(:reply, post: post1, user: user)
+        3.times do
+          create(:reply, post: post1, user: user, content: "test content")
+        end
         visit posts_path
       end
       # page.find('a', :text => /^3$/).hover
@@ -148,11 +149,11 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
       before(:each) do
         Timecop.freeze(desired_time) do
           character2 = create(:character, name: "Bob", user: other_user)
-          30.times do |i|
-            if i.even?
-              create(:reply, post: post, user: other_user, character: character2)
-            elsif i.odd?
-              create(:reply, post: post, user: user, character: character1)
+          1.upto(30) do |i|
+            if i.odd?
+              create(:reply, post: post, user: other_user, character: character2, content: "test content #{i}")
+            elsif i.even?
+              create(:reply, post: post, user: user, character: character1, content: "test content #{i}")
             end
           end
         end
@@ -177,7 +178,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
       scenario "Post#Metadata" do
         Timecop.freeze(desired_time) do
           character3 = create(:character, name: "Eve", user: user)
-          create(:reply, post: post, user: user, character: character3)
+          create(:reply, post: post, user: user, character: character3, content: "test content")
           visit stats_post_path(post)
         end
         expect(page).to match_expectation
