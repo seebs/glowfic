@@ -4,8 +4,14 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
   let(:desired_time) { Time.zone.local(2018) }
 
   shared_examples_for "layout" do |layout|
-    let(:icon) { create(:icon, url: "https://dummyimage.com/100x100/000/fff.png", keyword: "a") }
-    let(:user) { create(:user, username: 'Jane Doe', email: 'fake303@faker.com', password: 'known', avatar: icon) }
+    let(:user) {
+      create(:user,
+        username: 'Jane Doe',
+        email: 'fake303@faker.com',
+        password: 'known',
+        avatar: create(:icon, url: "https://dummyimage.com/100x100/000/fff.png", user: user, keyword: "a")
+      )
+    }
 
     before(:each) do
       user.update_attributes(layout: layout)
@@ -92,7 +98,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
         end
         gallery = create(:gallery, user: user, gallery_groups: GalleryGroup.all)
         gallery.icons = Array.new(10) do |i|
-          create(:icon, url: "https://dummyimage.com/100x100/000/fff.png", keyword: i)
+          create(:icon, url: "https://dummyimage.com/100x100/000/fff.png", user: user, keyword: i)
         end
         visit gallery_path(gallery)
       end
@@ -171,7 +177,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
             gallery = create(:gallery, user: user)
             n = (i == 1) ? 9 : 3
             n.times do
-              create(:icon, url: "https://dummyimage.com/100x100/000/fff.png", keyword: i, galleries: [gallery])
+              create(:icon, url: "https://dummyimage.com/100x100/000/fff.png", user: user, keyword: i, galleries: [gallery])
             end
             gallery
           end
