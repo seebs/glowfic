@@ -180,8 +180,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
           create(:reply, post: post, user: user, character: character3, content: "test content")
           visit stats_post_path(post)
         end
-        post.update_attributes(description: "<a href=http://www.fakesite.com>test link</a>")
-        page.find('a', :text => 'test link', match: :prefer_exact).hover
+        page.find('a', :text => 'test setting 1', match: :prefer_exact).hover
         expect(page).to match_expectation
       end
 
