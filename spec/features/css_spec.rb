@@ -19,7 +19,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
 
     scenario "Recently Updated" do
       board = Timecop.freeze(desired_time) { create(:board, name: 'Testing Area', creator: user) }
-      post1 = Timecop.freeze(desired_time + 1.minute) { create(:post, user: user, board: board, subject: "test subject 1", num_replies: 24) }
+      post1 = Timecop.freeze(desired_time + 1.minute) { create(:post, user: user, board: board, subject: "test subject 1", num_replies: 24, id: 101) }
       post2 = Timecop.freeze(desired_time + 2.minutes) { create(:post, user: user, board: board, subject: "test subject 2", num_replies: 28) }
       3.upto(76) do |i|
         Timecop.freeze(desired_time + i.minutes) do
@@ -138,7 +138,8 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
             board: create(:board, name: 'Testing Area', id: 5),
             settings: settings,
             content_warnings: warnings,
-            labels: labels
+            labels: labels,
+            id: 80
           )
         end
       end
