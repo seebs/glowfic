@@ -37,7 +37,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
     scenario "Board" do
       Timecop.freeze(desired_time) do
         other_user = create(:user, username: 'John Doe')
-        board = create(:board, name: 'Testing Area')
+        board = create(:board, name: 'Testing Area', id: 3)
         3.times do |i|
           create(:board_section, board: board, name: "Test Section #{i+1}")
         end
