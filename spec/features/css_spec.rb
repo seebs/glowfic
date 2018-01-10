@@ -8,8 +8,8 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
     let(:other_user) { create(:user, username: 'John Doe') }
 
     before(:each) do
-      user.update_attributes(avatar: create(:icon, user: user, url: "https://dummyimage.com/100x100/000/fff.png", keyword: "a"))
       user.update_attributes(layout: layout)
+      user.update_attributes(avatar: create(:icon, user: user, url: "https://dummyimage.com/100x100/000/fff.png", keyword: "a"))
 
       visit root_path
       fill_in "username", with: user.username
