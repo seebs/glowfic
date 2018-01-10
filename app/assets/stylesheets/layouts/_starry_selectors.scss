@@ -118,7 +118,7 @@ th, .content-header {
 .post-character, .post-character a, .post-character a:visited, { color: $font_color_post_info; }
 .post-screenname { font-weight: $font_weight_post_info; background-color: $bg_color_post_screenname; }
 .post-screenname, .post-screenname a, .post-screenname a:visited { color: $font_color_post_screenname; } // TODO: clean this up when messages are fixed to not use it
-@if theme == 'starrylight' {
+@if $theme == 'starrylight' {
   .post-screenname, .post-screenname a, .post-screenname a:visited { font-style: italic; }
 }
 .post-author { font-weight: $font_weight_post_info; background-color: $bg_color_post_author; }
@@ -128,7 +128,7 @@ th, .content-header {
 .pagination a { color: $font_color_paginate_link; }
 .pagination a:visited { color: $font_color_paginate_link_visited; }
 .pagination .disabled { color: $font_color_paginate_link_disabled; }
-@if theme == 'starrylight' {
+@if $theme == 'starrylight' {
   .pagination a:hover { background-color: $bg_color_paginate_link_hover; }
 }
 
