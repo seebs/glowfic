@@ -106,8 +106,8 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
             content_warnings: warnings,
             labels: labels
           )
-          post
         end
+        post
       }
       before (:each) {
         Timecop.freeze(desired_time) do
@@ -153,11 +153,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
           galleries = []
           3.times do |i|
             gallery = create(:gallery, user: user)
-            if i == 1 then
-              n = 9
-            else
-              n = 3
-            end
+            n = if i == 1 then 9 else 3 end
             n.times do |icon|
               create(:icon, url: "https://dummyimage.com/100x100/000/fff.png", keyword: i, galleries: [gallery])
             end
