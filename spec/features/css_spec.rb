@@ -21,8 +21,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
       board = Timecop.freeze(desired_time) { create(:board, name: 'Testing Area', creator: user) }
       post1 = Timecop.freeze(desired_time + 1.minute) { create(:post, user: user, board: board, subject: "test subject 1", num_replies: 24) }
       post2 = Timecop.freeze(desired_time + 2.minutes) { create(:post, user: user, board: board, subject: "test subject 2", num_replies: 28) }
-      post3 = Timecop.freeze(desired_time + 3.minutes) { create(:post, user: user, board: board, subject: "test subject 3", num_replies: 8) }
-      4.upto(76) do |i|
+      3.upto(76) do |i|
         Timecop.freeze(desired_time + i.minutes) do
           create(:post, user: user, board: board, subject: "test subject #{i}")
         end
@@ -30,7 +29,6 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
 
       Timecop.freeze(desired_time + 1.day) do
         post2.mark_read(user)
-        post3.mark_read(user)
         visit post_path(post1)
         visit posts_path(page: 2)
         3.times do
@@ -38,9 +36,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
         end
         visit posts_path
       end
-      # page.find('a', :text => /^3$/).hover
-      # page.find('a', :text => 'test subject 2', match: :prefer_exact).hover
-      # page.find('a', :text => 'test subject 4').hover
+      page.find('a', :text => 'test subject 4').hover
       expect(page).to match_expectation
     end
 
@@ -111,6 +107,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
         end
         visit gallery_path(gallery)
       end
+      page.find('a', :text => 'Tag1', match: :prefer_exact).hover
       expect(page).to match_expectation
     end
 
@@ -164,6 +161,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
           visit post_path(post, page: 2)
           sleep(0.5)
         end
+        page.find('a', :text => /^1$/).hover
         expect(page).to match_expectation
       end
 
@@ -181,6 +179,8 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
           create(:reply, post: post, user: user, character: character3, content: "test content")
           visit stats_post_path(post)
         end
+        post.update_attributes(description: "<a href=http://www.fakesite.com>test link</a>")
+        page.find('a', :text => 'test link', match: :prefer_exact).hover
         expect(page).to match_expectation
       end
 
