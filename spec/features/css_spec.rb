@@ -18,21 +18,21 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
     end
 
     scenario "Recently Updated" do
-      post1 = Timecop.freeze(desired_time) do
-        board = create(:board, name: 'Testing Area', creator: user)
-        post1 = create(:post, user: user, board: board, subject: "test subject 1", num_replies: 24)
-        post2 = create(:post, user: user, board: board, subject: "test subject 2", num_replies: 28)
-        post3 = create(:post, user: user, board: board, subject: "test subject 3", num_replies: 8)
-        73.times do |i|
-          create(:post, user: user, board: board, subject: "test subject #{i+4}")
+      board = Timecop.freeze(desired_time) { create(:board, name: 'Testing Area', creator: user) }
+      post1 = Timecop.freeze(desired_time + 1.minute) { create(:post, user: user, board: board, subject: "test subject 1", num_replies: 24) }
+      post2 = Timecop.freeze(desired_time + 2.minutes) { create(:post, user: user, board: board, subject: "test subject 2", num_replies: 28) }
+      post3 = Timecop.freeze(desired_time + 3.minutes) { create(:post, user: user, board: board, subject: "test subject 3", num_replies: 8) }
+      4.upto(76) do |i|
+        Timecop.freeze(desired_time + i.minutes) do
+          create(:post, user: user, board: board, subject: "test subject #{i}")
         end
+      end
+
+      Timecop.freeze(desired_time + 1.day) do
         post2.mark_read(user)
         post3.mark_read(user)
         visit post_path(post1)
         visit posts_path(page: 2)
-        post1
-      end
-      Timecop.freeze(desired_time + 1.minute) do
         create(:reply, post: post1, user: user)
         create(:reply, post: post1, user: user)
         visit posts_path
