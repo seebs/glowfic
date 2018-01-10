@@ -67,9 +67,9 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
           description: "test content"
         )
         gallery = create(:gallery, user: user)
-        icon = create(:icon, url: "https://dummyimage.com/100x100/000/fff.png&text=a", user: user, galleries: [gallery])
-        create(:icon, url: "https://dummyimage.com/100x100/000/fff.png&text=b", user: user, galleries: [gallery])
-        create(:icon, url: "https://dummyimage.com/100x100/000/fff.png&text=c", user: user, galleries: [gallery])
+        icon = create(:icon, url: "https://dummyimage.com/100x100/000/fff.png&text=a", user: user, galleries: [gallery], keyword: 'a')
+        create(:icon, url: "https://dummyimage.com/100x100/000/fff.png&text=b", user: user, galleries: [gallery], keyword: 'b')
+        create(:icon, url: "https://dummyimage.com/100x100/000/fff.png&text=c", user: user, galleries: [gallery], keyword: 'c')
         character.update_attributes(galleries: [gallery])
         character.update_attributes(default_icon: icon)
         character.update_attributes(aliases: [
