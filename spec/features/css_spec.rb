@@ -5,6 +5,7 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
 
   shared_examples_for "layout" do |layout|
     let(:user) { create(:user, username: 'Jane Doe', email: 'fake303@faker.com', password: 'known') }
+    let(:other_user) { create(:user, username: 'John Doe') }
 
     before(:each) do
       user.update_attributes(avatar: create(:icon, user: user, url: "https://dummyimage.com/100x100/000/fff.png", keyword: "a"))
@@ -36,7 +37,6 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
 
     scenario "Board" do
       Timecop.freeze(desired_time) do
-        other_user = create(:user, username: 'John Doe')
         board = create(:board, name: 'Testing Area', id: 3)
         3.times do |i|
           create(:board_section, board: board, name: "Test Section #{i+1}")
@@ -97,7 +97,6 @@ RSpec.feature "Renders the same:", :type => :feature, :js => true do
     end
 
     context "with post" do
-      let(:other_user) { create(:user, username: 'John Doe') }
       let(:character1) { create(:character, name: "Alice", user: user) }
       let(:post) do
         Timecop.freeze(desired_time) do
