@@ -231,7 +231,7 @@ $font_color_paginate_link_disabled: #58546B;
 }
 
 /* - icons */
-@if $theme != 'starrydark' {
+@if $theme == 'starrylight' or $theme == 'starrynil' {
   $bg_color_icon: $colors_alto_darker !global;
   $bg_color_icon_credit: $colors_alto_darker !global;
 } @else if $theme == 'starrydark' {
@@ -241,7 +241,7 @@ $font_color_paginate_link_disabled: #58546B;
 }
 
 /* - tag items */
-@if $theme != 'starrydark' {
+@if $theme == 'starrylight' or $theme == 'starrynil' {
   $font_color_tag_item: #444158 !global;
   $font_color_tag_item_gallery: #F7F7F7 !global;
 }
