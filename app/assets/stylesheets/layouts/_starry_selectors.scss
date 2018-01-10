@@ -112,7 +112,7 @@ th, .content-header {
 @if $theme == 'starrydark' {
   #current-icon-dropdown { color: $font_color_icon_dropdown; }
 }
-#reply-icon-selector { background-color: $font_color_page; color: $font_color_page; }
+#reply-icon-selector { background-color: $bg_color_icon_selector; color: $font_color_page; }
 
 .post-character { font-weight: $font_weight_post_info; background-color: $bg_color_post_character; }
 .post-character, .post-character a, .post-character a:visited, { color: $font_color_post_info; }
