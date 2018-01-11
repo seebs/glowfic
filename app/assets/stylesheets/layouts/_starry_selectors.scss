@@ -117,9 +117,9 @@ th, .content-header {
   @if $theme == 'starrydark' or $theme == 'starrynil' {
     color: $font_color_post_menu;
   }
-  background-color: $bg_color_post_menu;
   border-top: 1px solid $border_color_post_menu;
   border-top: 1px solid rgba($border_color_post_menu, 0.5);
+  background-color: $bg_color_post_menu;
 
   a { color: inherit; }
 
@@ -152,14 +152,14 @@ th, .content-header {
 }
 
 .post-character {
-  font-weight: $font_weight_post_info;
   background-color: $bg_color_post_character;
+  font-weight: $font_weight_post_info;
 }
 .post-character, .post-character a, .post-character a:visited, { color: $font_color_post_info; }
 
 .post-screenname {
-  font-weight: $font_weight_post_info;
   background-color: $bg_color_post_screenname;
+  font-weight: $font_weight_post_info;
 }
 .post-screenname, .post-screenname a, .post-screenname a:visited { color: $font_color_post_screenname; } // TODO: clean this up when messages are fixed to not use it
 @if $theme == 'starrylight' {
