@@ -37,12 +37,12 @@ rules:
   no-trailing-whitespace: 1
   no-trailing-zero: 1
   no-transition-all: 1
-  no-universal-selectors: 0
+  no-universal-selectors: 1
   no-url-domains: 1
   no-url-protocols: 1
-  no-vendor-prefixes: 1
+  no-vendor-prefixes: 0
   no-warn: 1
-  property-units: 0
+  property-units: 1
 
   # Nesting
   declarations-before-nesting: 1
@@ -53,15 +53,18 @@ rules:
   # Name Formats
   class-name-format: 1
   function-name-format: 1
-  id-name-format: 0
+  id-name-format:
+    - 1
+    - convention: ^[_\-a-z]+$
   mixin-name-format: 1
   placeholder-name-format: 1
   variable-name-format:
-    convention: snakecase
+    - 1
+    - convention: snakecase
 
   # Style Guide
   attribute-quotes: 1
-  bem-depth: 0
+  bem-depth: 1
   border-zero: 1
   brace-style: 1
   clean-import-paths: 1
@@ -69,7 +72,9 @@ rules:
   hex-length: 1
   hex-notation: 1
   indentation: 1
-  leading-zero: 0
+  leading-zero:
+    - 1
+    - include: true
   max-line-length: 0
   max-file-line-count: 0
   nesting-depth: 1
@@ -93,4 +98,4 @@ rules:
 
   # Final Items
   trailing-semicolon: 1
-  final-newline: 1
+  final-newline: 0
