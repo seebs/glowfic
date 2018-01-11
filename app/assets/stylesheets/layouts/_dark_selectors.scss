@@ -29,19 +29,19 @@ a:hover { color: $font_color_link_hover; }
   a, a:visited { color: $font_color_flash_link; }
   a:hover { color: $font_color_flash_hover; }
 
-  .breadcrumbs {
+  &.breadcrumbs {
     background-color: $bg_color_flash_breadcrumbs;
     color: $font_color_flash_breadcrumbs;
   }
 
-  .success {
+  &.success {
     background-color: $bg_color_flash_success;
     color: $font_color_flash_success;
   }
 
-  .error { background-color: $bg_color_flash_error; }
+  &.error { background-color: $bg_color_flash_error; }
 
-  .inbox {
+  &.inbox {
     background-color: $bg_color_flash_inbox;
     color: $font_color_flash_inbox;
   }
@@ -132,18 +132,18 @@ table { border-color: #555; } // TODO: what does this style
 
 /* - link-boxes */
 .link-box {
-  .action-new { color: $font_color_linkbox_new; }
-  .action-edit { color: $font_color_linkbox_edit; }
-  .action-favorite { color: $font_color_linkbox_favorite; }
-  .action-delete { color: $font_color_linkbox_delete; }
-  .action-dismiss { color: $font_color_linkbox_dismiss; }
+  &.action-new { color: $font_color_linkbox_new; }
+  &.action-edit { color: $font_color_linkbox_edit; }
+  &.action-favorite { color: $font_color_linkbox_favorite; }
+  &.action-delete { color: $font_color_linkbox_delete; }
+  &.action-dismiss { color: $font_color_linkbox_dismiss; }
 }
 
 /* - other buttons */
 .view-button {
   background-color: $bg_color_viewbutton;
   color: $font_color_viewbutton;
-  .selected { background-color: $bg_color_viewbutton_selected; }
+  &.selected { background-color: $bg_color_viewbutton_selected; }
 }
 
 #post_content, #reply_content {
