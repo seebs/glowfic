@@ -145,6 +145,7 @@ th, .content-header {
 @if $theme == 'starrydark' {
   #current-icon-dropdown { color: $font_color_icon_dropdown; }
 }
+
 #reply-icon-selector {
   background-color: $bg_color_icon_selector;
   color: $font_color_page;
@@ -194,12 +195,18 @@ th, .content-header {
 
 /* - tag items */
 @if $theme == 'starrydark' {
-  .tag-item, tr.gallery-tags .tag-item { background-color: $bg_color_tag_item; color: $font_color_link; }
+  .tag-item, .gallery-tags .tag-item {
+    background-color: $bg_color_tag_item;
+    color: $font_color_link;
+  }
   .even .tag-item { background-color: $bg_color_tag_item_even; }
   .odd .tag-item { background-color: $bg_color_tag_item_odd; }
 }
 @if $theme == 'starrylight' or $theme == 'starrynil' {
-  .gallery-tags .tag-item { background-color: $bg_color_tag_item; color: $font_color_tag_item_gallery; }
+  .gallery-tags .tag-item {
+    background-color: $bg_color_tag_item;
+    color: $font_color_tag_item_gallery;
+  }
   .tag-item { color: $font_color_tag_item; }
 }
 

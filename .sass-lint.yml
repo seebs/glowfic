@@ -6,7 +6,7 @@ rules:
   # Extends
   extends-before-mixins: 1
   extends-before-declarations: 1
-  placeholder-in-extend: 1
+  placeholder-in-extend: 0
 
   # Mixins
   mixins-before-declarations: 1
@@ -20,12 +20,16 @@ rules:
   no-attribute-selectors: 0
   no-color-hex: 0
   no-color-keywords: 1
-  no-color-literals: 1
+  no-color-literals:
+    - 1
+    - allow-rgba: true
   no-combinators: 0
   no-css-comments: 0
   no-debug: 1
   no-disallowed-properties: 0
-  no-duplicate-properties: 1
+  no-duplicate-properties:
+    - 1
+    - exclude: [background-color]
   no-empty-rulesets: 1
   no-extends: 0
   no-ids: 0
@@ -33,7 +37,7 @@ rules:
   no-invalid-hex: 1
   no-mergeable-selectors: 1
   no-misspelled-properties: 1
-  no-qualifying-elements: 1
+  no-qualifying-elements: 0
   no-trailing-whitespace: 1
   no-trailing-zero: 1
   no-transition-all: 1
@@ -46,12 +50,14 @@ rules:
 
   # Nesting
   declarations-before-nesting: 1
-  force-attribute-nesting: 1
-  force-element-nesting: 1
+  force-attribute-nesting: 0
+  force-element-nesting: 0
   force-pseudo-nesting: 0
 
   # Name Formats
-  class-name-format: 1
+  class-name-format:
+    - 1
+    - convention: ^[_\-a-z0-9]+$
   function-name-format: 1
   id-name-format:
     - 1
@@ -69,22 +75,30 @@ rules:
   brace-style: 1
   clean-import-paths: 1
   empty-args: 1
-  hex-length: 1
-  hex-notation: 1
+  hex-length:
+    - 1
+    - style: long
+  hex-notation:
+    - 1
+    - style: uppercase
   indentation: 1
   leading-zero:
     - 1
     - include: true
   max-line-length: 0
   max-file-line-count: 0
-  nesting-depth: 1
-  property-sort-order: 1
+  nesting-depth: 0
+  property-sort-order:
+    - 1
+    - order: concentric
   pseudo-element: 1
   quotes: 1
-  shorthand-values: 1
+  shorthand-values:
+    - 1
+    - allowed-shorthands: [1, 2]
   url-quotes: 1
   variable-for-property: 1
-  zero-unit: 1
+  zero-unit: 0
 
   # Inner Spacing
   space-after-comma: 1
