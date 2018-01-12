@@ -181,11 +181,11 @@ RSpec.describe Post do
         expect(section.section_order).to eq(i)
       end
 
-      board.posts.where(section_id: nil).order('section_order asc').each_with_index do |section, i|
+      board.posts.where(section_id: nil).ordered_in_section.each_with_index do |section, i|
         expect(section.section_order).to eq(i)
       end
 
-      section.posts.order('section_order asc').each_with_index do |section, i|
+      section.posts.ordered_in_section.each_with_index do |section, i|
         expect(section.section_order).to eq(i)
       end
     end
