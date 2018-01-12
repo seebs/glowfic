@@ -9,6 +9,8 @@ class IndexPost < ApplicationRecord
 
   before_validation :populate_index
 
+  scope :ordered, -> { order(section_order: :asc) }
+
   private
 
   def ordered_attributes

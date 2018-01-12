@@ -7,6 +7,8 @@ class IndexSection < ApplicationRecord
 
   validates_presence_of :name
 
+  scope :ordered, -> { order(section_order: :asc) }
+
   private
 
   def ordered_attributes
