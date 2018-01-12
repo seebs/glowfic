@@ -16,7 +16,9 @@ class Tag < ApplicationRecord
 
   scope :ordered_by_name, -> { order('lower(name) asc', id: :asc) }
 
-  scope :ordered, -> { order(created_at: :asc, id: :asc) }
+  scope :ordered, :ordered_by_id, -> { order(created_at: :asc, id: :asc) }
+
+  scope :ordered_by_post_tag, -> { order('post_tags.id ASC') }
 
   scope :with_item_counts, -> {
     select('(SELECT COUNT(DISTINCT post_tags.post_id) FROM post_tags WHERE post_tags.tag_id = tags.id) AS post_count,
