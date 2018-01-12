@@ -3,7 +3,7 @@ class Gallery < ApplicationRecord
 
   has_many :galleries_icons, dependent: :destroy, inverse_of: :gallery
   accepts_nested_attributes_for :galleries_icons, allow_destroy: true
-  has_many :icons, -> { order('LOWER(keyword) asc', created_at: :asc, id: :asc) }, through: :galleries_icons
+  has_many :icons, -> { ordered }, through: :galleries_icons
 
   has_many :characters_galleries, inverse_of: :gallery
   has_many :characters, through: :characters_galleries
@@ -14,11 +14,13 @@ class Gallery < ApplicationRecord
   validates_presence_of :name
 
   scope :ordered, -> { order('characters_galleries.section_order ASC') }
+
   scope :with_icon_count, -> {
     joins('LEFT JOIN galleries_icons ON galleries.id = galleries_icons.gallery_id')
       .select("galleries.*, count(galleries_icons.id) as icon_count")
       .group("galleries.id")
   }
+
   scope :with_gallery_groups, -> {
     # fetches an array of
     # galleries.map(&:gallery_groups).map{|group| [f1: group.id, f2: group.name]}

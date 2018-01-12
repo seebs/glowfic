@@ -8,7 +8,7 @@ class User < ApplicationRecord
   attr_accessor :password, :password_confirmation
   attr_writer :validate_password
 
-  has_many :icons, -> { order('LOWER(keyword) ASC', created_at: :asc, id: :asc) }
+  has_many :icons
   has_many :characters
   has_many :galleries
   has_many :character_groups
@@ -58,7 +58,7 @@ class User < ApplicationRecord
   end
 
   def galleryless_icons
-    icons.where(has_gallery: false).order('LOWER(keyword)')
+    icons.where(has_gallery: false).ordered
   end
 
   def default_view
