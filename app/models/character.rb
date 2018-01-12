@@ -58,7 +58,7 @@ class Character < ApplicationRecord
 
   def reorder_galleries(_gallery=nil)
     # public so that it can be called from CharactersGallery.after_destroy
-    galleries = CharactersGallery.where(character_id: id).order('section_order asc')
+    galleries = CharactersGallery.where(character_id: id).ordered
     return unless galleries.present?
 
     galleries.each_with_index do |other, index|

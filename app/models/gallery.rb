@@ -9,7 +9,7 @@ class Gallery < ApplicationRecord
   has_many :characters, through: :characters_galleries
 
   has_many :gallery_tags, inverse_of: :gallery, dependent: :destroy
-  has_many :gallery_groups, -> { order('gallery_tags.id ASC') }, through: :gallery_tags, source: :gallery_group, dependent: :destroy
+  has_many :gallery_groups, -> { ordered_by_gallery_tag }, through: :gallery_tags, source: :gallery_group, dependent: :destroy
 
   validates_presence_of :name
 
