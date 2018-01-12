@@ -18,7 +18,7 @@ class TagsController < ApplicationController
       @page_title = "Tags"
     end
 
-    @tags = Tag.order('type desc, LOWER(name) asc').select('tags.*')
+    @tags = Tag.type_ordered.select('tags.*')
     if @view.present?
       @tags = @tags.where(type: @view)
       @tags = @tags.includes(:user) if @view == 'Setting'
