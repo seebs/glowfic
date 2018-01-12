@@ -279,7 +279,7 @@ class CharactersController < ApplicationController
       @search_results = @search_results.where(where_calc.join(' OR '), *(['%' + params[:name].to_s + '%'] * where_calc.length))
     end
 
-    @search_results = @search_results.order('name asc').paginate(page: page, per_page: 25)
+    @search_results = @search_results.ordered.paginate(page: page, per_page: 25)
   end
 
   # logic replicated from page_view
@@ -326,7 +326,7 @@ class CharactersController < ApplicationController
       @character.build_template(user: user)
     end
     gon.user_id = user.id
-    @aliases = @character.aliases.order('name asc') if @character
+    @aliases = @character.aliases.ordered if @character
     gon.mod_editing = (user != current_user)
     groups = @character.try(:gallery_groups) || []
     gon.gallery_groups = groups.map {|group| group.as_json(include: [:gallery_ids], user_id: user.id) }
