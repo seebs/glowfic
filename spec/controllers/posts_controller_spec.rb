@@ -16,7 +16,7 @@ RSpec.describe PostsController do
 
     it "only fetches most recent threads" do
       26.times do create(:post) end
-      oldest = Post.order('id asc').first
+      oldest = Post.ordered_by_id.first
       get :index
       ids_fetched = controller.instance_variable_get('@posts').map(&:id)
       expect(ids_fetched).not_to include(oldest.id)
@@ -24,8 +24,8 @@ RSpec.describe PostsController do
 
     it "only fetches most recent threads based on updated_at" do
       26.times do create(:post) end
-      oldest = Post.order('id asc').first
-      next_oldest = Post.order('id asc').second
+      oldest = Post.ordered_by_id.first
+      next_oldest = Post.ordered_by_id.second
       oldest.update_attributes(content: "just to make it update")
       get :index
       ids_fetched = controller.instance_variable_get('@posts').map(&:id)
