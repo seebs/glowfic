@@ -10,6 +10,10 @@ class Message < ApplicationRecord
   before_validation :set_thread_id
   after_create :notify_recipient
 
+  scope :ordered_by_id, -> { order(id: :asc) }
+  scope :ordered_by_thread, -> { order(thread_id: :asc, id: :desc) }
+  scope :ordered_by_subquery, -> { order('subquery.id desc') }
+
   def visible_to?(user)
     user_ids.include?(user.id)
   end

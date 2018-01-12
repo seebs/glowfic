@@ -6,12 +6,12 @@ class MessagesController < ApplicationController
   def index
     if params[:view] == 'outbox'
       @page_title = 'Outbox'
-      from_table = current_user.sent_messages.where(visible_outbox: true).order('thread_id, id desc').select('distinct on (thread_id) messages.*')
-      @messages = Message.from(from_table).select('*').order('subquery.id desc').paginate(per_page: 25, page: page)
+      from_table = current_user.sent_messages.where(visible_outbox: true).ordered_by_thread.select('distinct on (thread_id) messages.*')
+      @messages = Message.from(from_table).select('*').ordered_by_subquery.paginate(per_page: 25, page: page)
     else
       @page_title = 'Inbox'
-      from_table = current_user.messages.where(visible_outbox: true).order('thread_id, id desc').select('distinct on (thread_id) messages.*')
-      @messages = Message.from(from_table).select('*').order('subquery.id desc').paginate(per_page: 25, page: page)
+      from_table = current_user.messages.where(visible_outbox: true).ordered_by_thread.select('distinct on (thread_id) messages.*')
+      @messages = Message.from(from_table).select('*').ordered_by_subquery.paginate(per_page: 25, page: page)
     end
     @view = @page_title.downcase
   end
@@ -28,7 +28,7 @@ class MessagesController < ApplicationController
     set_message_parent(params[:parent_id]) if params[:parent_id].present?
 
     if params[:button_preview]
-      @messages = Message.where(thread_id: @message.thread_id).order('id asc') if @message.thread_id
+      @messages = Message.where(thread_id: @message.thread_id).ordered_by_id if @message.thread_id
       editor_setup
       @page_title = 'Compose Message'
       render action: :preview and return
@@ -64,7 +64,7 @@ class MessagesController < ApplicationController
     @page_title = message.unempty_subject
     @box = message.box(current_user)
 
-    @messages = Message.where(thread_id: message.thread_id).order('id asc')
+    @messages = Message.where(thread_id: message.thread_id).ordered_by_id
     if @messages.any? { |m| m.recipient_id == current_user.id && m.unread? }
       @messages.each do |m|
         next unless m.unread?
