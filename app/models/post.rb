@@ -56,6 +56,9 @@ class Post < ApplicationRecord
     ),
     using: {tsearch: { dictionary: "english" } }
   )
+
+  scope :ordered, -> { order(tagged_at: :desc).order('lower(subject) asc', id: :asc) }
+
   scope :no_tests, -> { where.not(board_id: Board::ID_SITETESTING) }
 
   scope :with_has_content_warnings, -> {
