@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :characters, -> { order('LOWER(name) ASC', 'LOWER(screenname) ASC', created_at: :asc, id: :asc) }
   has_many :galleries, -> { order('LOWER(name) ASC', created_at: :asc, id: :asc) }
   has_many :character_groups
-  has_many :templates
+  has_many :templates, -> { order('LOWER(name) ASC', created_at: :asc, id: :asc) }
   has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
   has_many :messages, foreign_key: 'recipient_id'
   has_many :password_resets
