@@ -8,9 +8,10 @@ class User < ApplicationRecord
   attr_accessor :password, :password_confirmation
   attr_writer :validate_password
 
-  has_many :characters
   has_many :galleries
   has_many :icons, -> { order('LOWER(keyword) ASC', created_at: :asc, id: :asc) }
+  has_many :characters, -> { order('LOWER(name) ASC', 'LOWER(screenname) ASC', created_at: :asc, id: :asc) }
+  has_many :galleries, -> { order('LOWER(name) ASC', created_at: :asc, id: :asc) }
   has_many :character_groups
   has_many :templates
   has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'

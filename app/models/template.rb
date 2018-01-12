@@ -2,7 +2,7 @@ class Template < ApplicationRecord
   include Presentable
 
   belongs_to :user, inverse_of: :templates, optional: false
-  has_many :characters, -> { order('LOWER(name) ASC') }, inverse_of: :template
+  has_many :characters, -> { order('LOWER(name) ASC', 'lower(screenname) asc', created_at: :asc, id: :asc) }, inverse_of: :template
 
   validates_presence_of :name
 
