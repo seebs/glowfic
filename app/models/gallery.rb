@@ -15,6 +15,8 @@ class Gallery < ApplicationRecord
 
   scope :ordered, -> { order('characters_galleries.section_order ASC') }
 
+  scope :ordered_by_name, -> { order('lower(name) asc', id: :asc) }
+
   scope :with_icon_count, -> {
     joins('LEFT JOIN galleries_icons ON galleries.id = galleries_icons.gallery_id')
       .select("galleries.*, count(galleries_icons.id) as icon_count")
