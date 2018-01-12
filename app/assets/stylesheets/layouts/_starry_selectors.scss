@@ -15,7 +15,7 @@ body { background-color: $bg_color_page; /*color: $font_color_page;*/ } //TODO: 
   background-position: right top;
 }
 
-#logo { background-color: transparent !important; }
+#logo { background-color: transparent; }
 
 #user-info, #nav-top {
   background-color: $bg_color_header_middle;
