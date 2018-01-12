@@ -92,7 +92,7 @@ class UsersController < ApplicationController
     @page_title = 'Search Users'
     return unless params[:commit].present?
     username = '%' + params[:username].to_s + '%'
-    @search_results = User.where("username LIKE ?", username).order('username asc').paginate(per_page: 25, page: page)
+    @search_results = User.where("username LIKE ?", username).ordered.paginate(per_page: 25, page: page)
   end
 
   private

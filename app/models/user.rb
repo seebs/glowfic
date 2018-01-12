@@ -38,6 +38,8 @@ class User < ApplicationRecord
   before_validation :encrypt_password
   after_save :clear_password
 
+  scope :ordered, -> { order(username: :asc) }
+
   nilify_blanks
 
   def authenticate(password)

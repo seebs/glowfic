@@ -7,7 +7,7 @@
       %th.width-70.sub.centered Moiety
       %th.sub Date Joined
   %tbody
-    - User.order('username asc').each do |user|
+    - User.ordered.each do |user|
       %tr
         - klass = cycle('even','odd')
         %td.padding-10.username{class: klass}= link_to user.username, user_path(user)
