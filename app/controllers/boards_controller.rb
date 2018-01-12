@@ -54,7 +54,7 @@ class BoardsController < ApplicationController
 
   def show
     @page_title = @board.name
-    @board_sections = @board.board_sections.order('section_order asc')
+    @board_sections = @board.board_sections.ordered
     order = 'section_order asc, tagged_at asc'
     order = 'tagged_at desc' unless @board.ordered?
     @posts = posts_from_relation(@board.posts.where(section_id: nil).order(order), false)
@@ -63,9 +63,9 @@ class BoardsController < ApplicationController
   def edit
     @page_title = 'Edit Continuity: ' + @board.name
     use_javascript('boards/edit')
-    @board_sections = @board.board_sections.order('section_order asc')
+    @board_sections = @board.board_sections.ordered
     unless @board.open_to_anyone? && @board_sections.empty?
-      @unsectioned_posts = @board.posts.where(section_id: nil).order('section_order asc')
+      @unsectioned_posts = @board.posts.where(section_id: nil).ordered
     end
   end
 
@@ -80,7 +80,7 @@ class BoardsController < ApplicationController
       @page_title = 'Edit Continuity: ' + @board.name_was
       set_available_cowriters
       use_javascript('board_sections')
-      @board_sections = @board.board_sections.order('section_order')
+      @board_sections = @board.board_sections.ordered
       render :action => :edit
     end
   end
