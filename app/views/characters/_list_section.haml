@@ -47,7 +47,7 @@
       - else
         %b Setting
     %td.padding-5{class: klass}
-  - characters.each do |character|
+  - characters.ordered.each do |character|
     - klass = cycle('even', 'odd')
     %tr
       %td.padding-5{class: klass}
