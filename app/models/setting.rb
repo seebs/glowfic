@@ -5,8 +5,6 @@ class Setting < Tag
   has_many :parent_settings, -> { ordered_by_tag_tag }, class_name: 'Setting', through: :child_setting_tags, source: :parent_setting
   has_many :child_settings, class_name: 'Setting', through: :parent_setting_tags, source: :child_setting
 
-  scope :ordered_by_char_tag, -> { order('character_tags.id ASC') }
-
   scope :ordered_by_tag_tag, -> { order('tag_tags.id ASC') }
 
   def has_items?
