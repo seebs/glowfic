@@ -63,6 +63,8 @@ class Post < ApplicationRecord
 
   scope :ordered_by_id, -> { order(id: :asc) }
 
+  scope :ordered_by_index, -> { order('index_post.section_order asc') }
+
   scope :no_tests, -> { where.not(board_id: Board::ID_SITETESTING) }
 
   scope :with_has_content_warnings, -> {
