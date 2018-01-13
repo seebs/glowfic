@@ -16,7 +16,7 @@ class Tag < ApplicationRecord
 
   scope :ordered_by_name, -> { order('lower(name) asc', id: :asc) }
 
-  scope :ordered, :ordered_by_id, -> { order(created_at: :asc, id: :asc) }
+  scope :ordered_by_id, -> { order(created_at: :asc, id: :asc) }
 
   scope :ordered_by_post_tag, -> { order('post_tags.id ASC') }
 

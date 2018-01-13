@@ -76,7 +76,7 @@ RSpec.describe Board do
     expect(board.board_sections.ordered.pluck(:section_order)).to eq([1, 2, 6])
     board.send(:fix_ordering)
     expect(board.posts.ordered_in_section.pluck(:section_order)).to eq([0, 1, 2, 3])
-    expect(board.board_sections.ordered_in_section.pluck(:section_order)).to eq([0, 1, 2])
+    expect(board.board_sections.ordered.pluck(:section_order)).to eq([0, 1, 2])
   end
 
   describe "#ordered?" do
