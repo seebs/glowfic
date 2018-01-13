@@ -12,9 +12,9 @@ class Tag < ApplicationRecord
   validates_presence_of :name, :type
   validates :name, uniqueness: { scope: :type }
 
-  scope :ordered_by_type, -> { order(type: :desc).order('lower(name) asc', id: :asc) }
+  scope :ordered_by_type, -> { order(type: :desc, name: :asc, id: :asc) }
 
-  scope :ordered_by_name, -> { order('lower(name) asc', id: :asc) }
+  scope :ordered_by_name, -> { order(name: :asc, id: :asc) }
 
   scope :ordered_by_id, -> { order(created_at: :asc, id: :asc) }
 

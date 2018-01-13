@@ -19,7 +19,7 @@ class Board < ApplicationRecord
 
   after_destroy :move_posts_to_sandbox
 
-  scope :ordered, -> { order(pinned: :desc).order('lower(name) asc') }
+  scope :ordered, -> { order(pinned: :desc, name: :asc) }
 
   def writers
     @writers ||= coauthors + [creator]
