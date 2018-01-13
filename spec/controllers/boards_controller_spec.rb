@@ -242,7 +242,7 @@ RSpec.describe BoardsController do
       login_as(board.creator)
       get :edit, params: { id: board.id }
       expect(assigns(:board_sections)).to eq(sections)
-      expect(assigns(:unsectioned_posts.ordered)).to eq(posts)
+      expect(assigns(:unsectioned_posts)).to eq(posts)
     end
   end
 

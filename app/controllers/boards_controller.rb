@@ -65,7 +65,7 @@ class BoardsController < ApplicationController
     use_javascript('boards/edit')
     @board_sections = @board.board_sections.ordered
     unless @board.open_to_anyone? && @board_sections.empty?
-      @unsectioned_posts = @board.posts.where(section_id: nil).ordered
+      @unsectioned_posts = @board.posts.where(section_id: nil).ordered_in_section
     end
   end
 
