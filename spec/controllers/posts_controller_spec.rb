@@ -33,11 +33,11 @@ RSpec.describe PostsController do
     end
 
     it "orders posts by tagged_at" do
-      post2 = create(:post, tagged_at: Time.now - 8.minutes)
-      post5 = create(:post, tagged_at: Time.now - 2.minutes)
-      post1 = create(:post, tagged_at: Time.now - 10.minutes)
-      post4 = create(:post, tagged_at: Time.now - 4.minutes)
-      post3 = create(:post, tagged_at: Time.now - 6.minutes)
+      post2 = Timecop.freeze(Time.now - 8.minutes) { create(:post) }
+      post5 = Timecop.freeze(Time.now - 2.minutes) { create(:post) }
+      post1 = Timecop.freeze(Time.now - 10.minutes) { create(:post) }
+      post4 = Timecop.freeze(Time.now - 4.minutes) { create(:post) }
+      post3 = Timecop.freeze(Time.now - 6.minutes) { create(:post) }
       get :index
       ids_fetched = controller.instance_variable_get('@posts').map(&:id)
       expect(ids_fetched).to eq([post5.id, post4.id, post3.id, post2.id, post1.id])
