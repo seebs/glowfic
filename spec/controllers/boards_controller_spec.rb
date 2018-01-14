@@ -281,11 +281,13 @@ RSpec.describe BoardsController do
     it "sets expected variables" do
       board = create(:board)
       sections = [create(:board_section, board: board), create(:board_section, board: board)]
-      posts = [create(:post, board: board), create(:post, board: board)]
+      posts = [create(:post, board: board, tagged_at: Time.now + 5.minutes), create(:post, board: board)]
+      sections[0].update_attributes(section_order: 1)
+      sections[1].update_attributes(section_order: 0)
       board.coauthors << create(:user)
       login_as(board.creator)
       get :edit, params: { id: board.id }
-      expect(assigns(:board_sections)).to eq(sections)
+      expect(assigns(:board_sections)).to eq(sections.reverse)
       expect(assigns(:unsectioned_posts)).to eq(posts)
     end
   end
