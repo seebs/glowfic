@@ -1059,7 +1059,7 @@ RSpec.describe CharactersController do
           create(:character, user: user, name: "character#{i}")
         end
         get :search, params: { commit: true, author_id: user.id }
-        expect(assigns(:search_results).count).to eq(25)
+        expect(assigns(:search_results).length).to eq(25)
       end
     end
   end
