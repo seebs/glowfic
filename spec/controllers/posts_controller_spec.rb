@@ -157,6 +157,14 @@ RSpec.describe PostsController do
         get :search, params: { commit: true, completed: true }
         expect(assigns(:search_results)).to match_array(post)
       end
+
+      it "sorts posts by tagged_at" do
+        posts = Array.new(4) do create(:post) end
+        create(:reply, post: posts[2])
+        create(:reply, post: posts[1])
+        get :search, params: { commit: true }
+        expect(assigns(:search_results)).to eq([posts[1], posts[2], posts[3], posts[0]])
+      end
     end
   end
 
@@ -2335,6 +2343,18 @@ RSpec.describe PostsController do
       expect(assigns(:page_title)).to eq('Unread Threads')
       expect(assigns(:posts)).to match_array([unread_post, opened_post1, opened_post2])
       expect(assigns(:hide_quicklinks)).to eq(true)
+    end
+
+    it "orders posts by tagged_at" do
+      login
+      post2 = create(:post)
+      post3 = create(:post)
+      post1 = create(:post)
+      create(:reply, post: post2)
+      create(:reply, post: post1)
+
+      get :unread
+      expect(assigns(:posts)).to eq([post1, post2, post3])
     end
 
     context "opened" do
