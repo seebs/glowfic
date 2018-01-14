@@ -1205,4 +1205,18 @@ RSpec.describe CharactersController do
       end
     end
   end
+
+  describe "#build_editor" do
+    it "orders characters correctly" do
+      user = create(:user)
+      login_as(user)
+      template4 = create(:template, user: user, name: "d")
+      template2 = create(:template, user: user, name: "b")
+      template1 = create(:template, user: user, name: "a")
+      template3 = create(:template, user: user, name: "c")
+      controller.send(:build_editor)
+      expect(assigns(:templates)).to eq([template1, template2, template3, template4])
+    end
+    skip "More tests"
+  end
 end
