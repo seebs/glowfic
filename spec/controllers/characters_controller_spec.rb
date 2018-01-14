@@ -961,10 +961,12 @@ RSpec.describe CharactersController do
 
     it "sets templates by author" do
       author = create(:user)
-      template = create(:template, user: author)
+      template2 = create(:template, user: author, name: 'b')
+      template = create(:template, user: author, name: 'a')
+      template3 = create(:template, user: author, name: 'c')
       create(:template)
       get :search, params: { commit: true, author_id: author.id }
-      expect(assigns(:templates)).to eq([template])
+      expect(assigns(:templates)).to eq([template, template2, template3])
     end
 
     it "doesn't search missing template" do
@@ -1037,6 +1039,27 @@ RSpec.describe CharactersController do
       it "searches all correctly" do
         get :search, params: { commit: true, name: 'a', search_name: true, search_screenname: true, search_nickname: true }
         expect(assigns(:search_results)).to match_array([@name, @screenname, @nickname])
+      end
+
+      it "orders results correctly" do
+        template = create(:template)
+        user = template.user
+        char4 = create(:character, user: user, template: template, name: 'd')
+        char2 = create(:character, user: user, name: 'b')
+        char1 = create(:character, user: user, template: template, name: 'a')
+        char5 = create(:character, user: user, name: 'e')
+        char3 = create(:character, user: user, name: 'c')
+        get :search, params: { commit: true, author_id: user.id }
+        expect(assigns(:search_results)).to eq([char1, char2, char3, char4, char5])
+      end
+
+      it "paginates correctly" do
+        user = create(:user)
+        26.times do |i|
+          create(:character, user: user, name: "character#{i}")
+        end
+        get :search, params: { commit: true, author_id: user.id }
+        expect(assigns(:search_results).count).to eq(25)
       end
     end
   end
