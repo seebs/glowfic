@@ -31,6 +31,17 @@ RSpec.describe PostsController do
       ids_fetched = controller.instance_variable_get('@posts').map(&:id)
       expect(ids_fetched).not_to include(next_oldest.id)
     end
+
+    it "orders posts by tagged_at" do
+      post2 = create(:post, tagged_at: Time.now - 8.minutes)
+      post5 = create(:post, tagged_at: Time.now - 2.minutes)
+      post1 = create(:post, tagged_at: Time.now - 10.minutes)
+      post4 = create(:post, tagged_at: Time.now - 4.minutes)
+      post3 = create(:post, tagged_at: Time.now - 6.minutes)
+      get :index
+      ids_fetched = controller.instance_variable_get('@posts').map(&:id)
+      expect(ids_fetched).to eq([post5.id, post4.id, post3.id, post2.id, post1.id])
+    end
   end
 
   describe "GET search" do
@@ -2249,6 +2260,17 @@ RSpec.describe PostsController do
         get :owed
         expect(response.status).to eq(200)
         expect(assigns(:posts)).to match_array([])
+      end
+
+      it "orders posts by tagged_at" do
+        post2 = create(:post, user_id: user.id)
+        post3 = create(:post, user_id: user.id)
+        post1 = create(:post, user_id: user.id)
+        create(:reply, post_id: post3.id, user_id: other_user.id)
+        create(:reply, post_id: post2.id, user_id: other_user.id)
+        create(:reply, post_id: post1.id, user_id: other_user.id)
+        get :owed
+        expect(assigns(:posts)).to eq([post1, post2, post3])
       end
     end
 
