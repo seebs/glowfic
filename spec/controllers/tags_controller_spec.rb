@@ -42,14 +42,17 @@ RSpec.describe TagsController do
         tags.reject! { |tag| tag.is_a?(GalleryGroup) }
         expect(assigns(:tags)).to match_array(tags)
       end
+    end
 
-      it "orders tags by type and then name" do
-        empty_tag, tag, empty_group, group1, setting, owned_setting = create_tags
-        warning2 = create(:content_warning, name: "b")
-        warning1 = create(:content_warning, name: "a")
-        get :index
-        expect(assigns(:tags)).to eq([setting, owned_setting, empty_tag, tag, warning1, warning2])
-      end
+    it "orders tags by type and then name" do
+      tag2 = create(:label, name: "b")
+      tag1 = create(:label, name: "a")
+      setting1 = create(:setting, name: "a")
+      setting2 = create(:setting, owned: true, name: "b")
+      warning2 = create(:content_warning, name: "b")
+      warning1 = create(:content_warning, name: "a")
+      get :index
+      expect(assigns(:tags)).to eq([setting1, setting2, tag1, tag2, warning1, warning2])
     end
   end
 
