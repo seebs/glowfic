@@ -213,6 +213,20 @@ RSpec.describe CharactersController do
       get :show, params: { id: character.id }
       expect(assigns(:posts)).to be_blank
     end
+
+    it "orders recent posts" do
+      character = create(:character)
+      post3 = create(:post)
+      post1 = create(:post, user: character.user, character: character)
+      post4 = create(:post, user: character.user, character: character)
+      post2 = create(:post)
+      create(:reply, post: post4)
+      create(:reply, post: post3, user: character.user, character: character)
+      create(:reply, post: post2, user: character.user, character: character)
+      create(:reply, post: post1)
+      get :show, params: { id: character.id }
+      expect(assigns(:posts)).to eq([post1, post2, post3, post4])
+    end
   end
 
   describe "GET edit" do
@@ -536,6 +550,36 @@ RSpec.describe CharactersController do
 
       expect(character.reload.galleries.pluck(:id)).to eq([g2.id])
       expect(g2_cg.reload.section_order).to eq(0)
+    end
+
+    it "orders settings by default" do
+      char = create(:character)
+      login_as(char.user)
+      setting1 = create(:setting)
+      setting3 = create(:setting)
+      setting2 = create(:setting)
+      put :update, params: {
+        id: char.id,
+        character: {setting_ids: [setting1, setting2, setting3].map(&:id)}
+      }
+      expect(flash[:success]).to eq('Character saved successfully.')
+      expect(char.settings).to eq([setting1, setting2, setting3])
+    end
+
+    it "orders gallery groups by default" do
+      user = create(:user)
+      login_as(user)
+      char = create(:character, user: user)
+      group4 = create(:gallery_group, user: user)
+      group1 = create(:gallery_group, user: user)
+      group3 = create(:gallery_group, user: user)
+      group2 = create(:gallery_group, user: user)
+      put :update, params: {
+        id: char.id,
+        character: {gallery_group_ids: [group1, group2, group3, group4].map(&:id)}
+      }
+      expect(flash[:success]).to eq('Character saved successfully.')
+      expect(char.gallery_groups).to eq([group1, group2, group3, group4])
     end
   end
 
