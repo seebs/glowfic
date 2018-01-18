@@ -86,7 +86,7 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    @board.destroy
+    @board.destroy!
     flash[:success] = "Continuity deleted."
     redirect_to boards_path
   end

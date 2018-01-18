@@ -114,7 +114,7 @@ class CharactersController < ApplicationController
       redirect_to characters_path and return
     end
 
-    @character.destroy
+    @character.destroy!
     flash[:success] = "Character deleted successfully."
     redirect_to characters_path
   end

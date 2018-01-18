@@ -171,7 +171,7 @@ class GalleriesController < UploadingController
   end
 
   def destroy
-    @gallery.destroy
+    @gallery.destroy!
     flash[:success] = "Gallery deleted successfully."
     redirect_to galleries_path
   end
