@@ -34,7 +34,7 @@ characters.each do |username|
   end
 
   unless CharactersGallery.where(gallery_id: gallery.id, character_id: character.id).exists?
-    CharactersGallery.create(character_id: character.id, gallery_id: gallery.id)
+    CharactersGallery.create!(character_id: character.id, gallery_id: gallery.id)
   end
 
   response = HTTParty.get("http://#{url_name}.dreamwidth.org/icons")
