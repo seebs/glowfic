@@ -406,7 +406,7 @@ RSpec.describe GalleriesController do
       gallery = create(:gallery, user_id: user_id)
       icon = create(:icon, user_id: user_id)
       gallery.icons << icon
-      gallery.save
+      gallery.save!
       expect(icon.reload.has_gallery).to eq(true)
       delete :destroy, params: { id: gallery.id }
       expect(response).to redirect_to(galleries_url)
