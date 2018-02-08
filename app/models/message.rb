@@ -25,7 +25,7 @@ class Message < ApplicationRecord
 
   def last_in_thread
     return self if thread_id == id
-    @last ||= self.class.where(thread_id: thread_id).order('id desc').first
+    @last ||= self.class.where(thread_id: thread_id).ordered_by_id.first
   end
 
   def box(user)
