@@ -17,7 +17,7 @@ class Api::V1::CharactersController < Api::ApiController
   def index
     queryset = Character.where("name LIKE ?", params[:q].to_s + '%').order('name')
     if @post
-      char_ids = @post.replies.pluck('distinct character_id') + [@post.character_id]
+      char_ids = @post.replies.pluck('distinct character_id')
       queryset = queryset.where(id: char_ids)
     end
 

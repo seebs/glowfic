@@ -15,7 +15,7 @@ class RepliesController < WritableController
     @icon = Icon.find_by_id(params[:icon_id]) if params[:icon_id].present?
     if @post.try(:visible_to?, current_user)
       @users = @post.authors
-      char_ids = @post.replies.pluck('distinct character_id') + [@post.character_id]
+      char_ids = @post.replies.pluck('distinct character_id')
       @characters = Character.where(id: char_ids).order('name')
       @templates = Template.where(id: @characters.map(&:template_id).uniq.compact).order('name')
       gon.post_id = @post.id
