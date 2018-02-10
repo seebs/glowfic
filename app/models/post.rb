@@ -241,6 +241,10 @@ class Post < ApplicationRecord
     NotifyFollowersOfNewPostJob.perform_later(self.id, user.id)
   end
 
+  def written
+    self.replies.ordered.first
+  end
+
   private
 
   def valid_board
