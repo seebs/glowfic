@@ -119,6 +119,9 @@ class PostsController < WritableController
     @post.labels = process_tags(Label, :post, :label_ids)
     @post.user = current_user
 
+    reply = @post.replies.new(written_params)
+    reply.user = current_user
+
     unless @post.save
       flash.now[:error] = {}
       flash.now[:error][:array] = @post.errors.full_messages
