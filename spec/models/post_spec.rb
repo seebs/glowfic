@@ -118,7 +118,7 @@ RSpec.describe Post do
     it "should update when multiple fields are changed" do
       post = create(:post)
       expect(post.edited_at).to eq(post.created_at)
-      post.content = 'new content now'
+      post.subject = 'new subject'
       post.description = 'description'
       post.save
       expect(post.edited_at).not_to eq(post.created_at)
@@ -711,8 +711,14 @@ RSpec.describe Post do
     end
 
     it "does not reset on update" do
-      post.content = 'new content'
+      post.description = 'new description'
       post.save
+      expect(post.reload).not_to be_show_warnings_for(user)
+    end
+
+    it "does not reset on written update" do
+      post.written.content = 'new content'
+      post.written.save
       expect(post.reload).not_to be_show_warnings_for(user)
     end
 
@@ -865,7 +871,7 @@ RSpec.describe Post do
       post = nil
       Audited.audit_class.as_user(user) do
         post = create(:post, content: 'original', user: user)
-        1.upto(5) { |i| post.update_attributes!(content: 'message' + i.to_s) }
+        1.upto(5) { |i| post.update_attributes!(description: 'message' + i.to_s) }
       end
       expect(post.reload.has_edit_audits?).to eq(true)
     end
@@ -873,10 +879,10 @@ RSpec.describe Post do
     it "is true if post has been edited by moderator" do
       post = nil
       Audited.audit_class.as_user(user) do
-        post = create(:post, content: 'original')
+        post = create(:post, description: 'original')
       end
       Audited.audit_class.as_user(create(:mod_user)) do
-        post.update_attributes!(content: 'blah')
+        post.update_attributes!(description: 'blah')
       end
       expect(post.reload.has_edit_audits?).to eq(true)
     end

@@ -26,7 +26,7 @@ RSpec.describe PostsController do
       26.times do create(:post) end
       oldest = Post.order('id asc').first
       next_oldest = Post.order('id asc').second
-      oldest.update_attributes(content: "just to make it update")
+      oldest.update_attributes(description: "just to make it update")
       get :index
       ids_fetched = controller.instance_variable_get('@posts').map(&:id)
       expect(ids_fetched).not_to include(next_oldest.id)
@@ -1218,9 +1218,12 @@ RSpec.describe PostsController do
       post = create(:post, privacy: Concealable::PRIVATE)
       admin = create(:admin_user)
       login_as(admin)
-      put :update, params: { id: post.id, post: { content: 'b', audit_comment: 'note' } }
+      put :update, params: {
+        id: post.id,
+        post: { description: 'b', audit_comment: 'note' }
+      }
       expect(flash[:success]).to eq("Your post has been updated.")
-      expect(post.reload.content).to eq('b')
+      expect(post.reload.description).to eq('b')
       expect(post.audits.last.comment).to eq('note')
       Post.auditing_enabled = false
     end
