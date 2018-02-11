@@ -12,11 +12,11 @@ RSpec.describe Post do
 
     # edited with no replies updates edit and tag
     Timecop.freeze(old_tagged_at + 1.hour) do
-      post.content = 'new content'
-      post.save
-      expect(post.tagged_at).to be_the_same_time_as(post.edited_at)
+      post.written.content = 'new content'
+      post.written.save!
+      expect(post.tagged_at).to be_the_same_time_as(post.written.updated_at)
       expect(post.tagged_at).to be > post.created_at
-      old_edited_at = post.edited_at
+      old_edited_at = post.written.updated_at
       old_tagged_at = post.tagged_at
     end
 
@@ -40,11 +40,11 @@ RSpec.describe Post do
 
     # edited with replies updates edit but not tag
     Timecop.freeze(old_tagged_at + 4.hours) do
-      post.content = 'newer content'
-      post.save
+      post.written.content = 'newer content'
+      post.written.save!
       expect(post.tagged_at).to be_the_same_time_as(old_tagged_at)
-      expect(post.edited_at).to be > old_edited_at
-      old_edited_at = post.edited_at
+      expect(post.written.updated_at).to be > old_edited_at
+      old_edited_at = post.written.updated_at
     end
 
     # edited status with replies updates edit and tag
@@ -110,9 +110,9 @@ RSpec.describe Post do
     it "should update when a field is changed" do
       post = create(:post)
       expect(post.edited_at).to eq(post.created_at)
-      post.content = 'new content now'
-      post.save
-      expect(post.edited_at).not_to eq(post.created_at)
+      post.written.content = 'new content now'
+      post.written.save!
+      expect(post.written.updated_at).not_to eq(post.created_at)
     end
 
     it "should update when multiple fields are changed" do
@@ -245,7 +245,7 @@ RSpec.describe Post do
       expect(post.section_order).to eq(0)
       create(:post, board_id: board.id)
       create(:post, board_id: board.id)
-      post.update_attributes(content: 'new content')
+      post.written.update_attributes(content: 'new content')
       post.reload
       expect(post.section_order).to eq(0)
     end
