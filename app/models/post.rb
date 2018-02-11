@@ -243,6 +243,12 @@ class Post < ApplicationRecord
     self.replies.ordered.first
   end
 
+  def editable_by?(editor)
+    return false unless editor
+    return true if editor.id == user_id
+    editor.has_permission?(:edit_replies)
+  end
+
   private
 
   def valid_board
