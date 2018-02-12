@@ -248,6 +248,12 @@ class Post < ApplicationRecord
     editor.has_permission?(:edit_replies)
   end
 
+  def deletable_by?(editor)
+    return false unless editor
+    return true if editor.id == user_id
+    editor.has_permission?(:delete_replies)
+  end
+
   private
 
   def valid_board
