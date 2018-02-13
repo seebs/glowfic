@@ -97,9 +97,9 @@ class PostsController < WritableController
     @post = Post.new(user: current_user)
     @post.board_id = params[:board_id]
     @post.section_id = params[:section_id]
-    reply = @post.replies.new(user: current_user, post_id: @post.id, reply_order: 0)
-    reply.character = current_user.active_character
-    reply.icon_id = (current_user.active_character ? current_user.active_character.default_icon.try(:id) : current_user.avatar_id)
+    @written = @post.replies.new(user: current_user, post_id: @post.id, reply_order: 0)
+    @written.character = current_user.active_character
+    @written.icon_id = (current_user.active_character ? current_user.active_character.default_icon.try(:id) : current_user.avatar_id)
     @page_title = 'New Post'
 
     @permitted_authors -= [current_user]
@@ -119,8 +119,8 @@ class PostsController < WritableController
     @post.labels = process_tags(Label, :post, :label_ids)
     @post.user = current_user
 
-    reply = @post.replies.new(written_params)
-    reply.user = current_user
+    @written = @post.replies.new(written_params)
+    @written.user = current_user
 
     unless @post.save && reply.save
       flash.now[:error] = {}
