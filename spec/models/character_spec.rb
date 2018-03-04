@@ -299,7 +299,7 @@ RSpec.describe Character do
       gallery1 = create(:gallery, user: user)
       gallery2 = create(:gallery, user: user)
       char = create(:character, user: user)
-      char.update(galleries: [gallery1, gallery2])
+      char.update!(galleries: [gallery1, gallery2])
       expect(char.character_gallery_for(gallery1.id).section_order).to eq(0)
       expect(char.character_gallery_for(gallery2.id).section_order).to eq(1)
     end
@@ -310,7 +310,7 @@ RSpec.describe Character do
       gallery2 = create(:gallery, user: user)
       gallery3 = create(:gallery, user: user)
       char = create(:character, user: user, galleries: [gallery1, gallery2, gallery3])
-      char.update(galleries: [gallery1, gallery3])
+      char.update!(galleries: [gallery1, gallery3])
       expect(char.character_gallery_for(gallery1.id).section_order).to eq(0)
       expect(char.character_gallery_for(gallery3.id).section_order).to eq(1)
       expect(char.character_gallery_for(gallery2.id)).to be_nil
