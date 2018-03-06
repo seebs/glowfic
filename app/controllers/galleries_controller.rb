@@ -171,9 +171,15 @@ class GalleriesController < UploadingController
   end
 
   def destroy
-    @gallery.destroy!
-    flash[:success] = "Gallery deleted successfully."
-    redirect_to galleries_path
+    if @gallery.destroy
+      flash[:success] = "Gallery deleted successfully."
+      redirect_to galleries_path
+    else
+      flash.now[:error] = {}
+      flash.now[:error][:message] = "Gallery could not be deleted."
+      flash.now[:error][:array] = @gallery.errors.full_messages
+      redirect_to gallery_path(@gallery)
+    end
   end
 
   private

@@ -50,7 +50,7 @@ class IndexesController < ApplicationController
   def update
     unless @index.update_attributes(index_params)
       flash.now[:error] = {}
-      flash.now[:error][:message] = "Index could not be saved because of the following problems:"
+      flash.now[:error][:message] = "Index could not be deleted because of the following problems:"
       flash.now[:error][:array] = @index.errors.full_messages
       @page_title = "Edit Index: #{@index.name}"
       render action: :edit and return
@@ -61,9 +61,15 @@ class IndexesController < ApplicationController
   end
 
   def destroy
-    @index.destroy!
-    flash[:success] = "Index deleted."
-    redirect_to indexes_path
+    if @index.destroy
+      flash[:success] = "Index deleted."
+      redirect_to indexes_path
+    else
+      flash.now[:error] = {}
+      flash.now[:error][:message] = "Index could not be saved because of the following problems:"
+      flash.now[:error][:array] = @index.errors.full_messages
+      redirect_to index_path(@index)
+    end
   end
 
   private

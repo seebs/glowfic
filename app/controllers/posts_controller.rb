@@ -267,9 +267,15 @@ class PostsController < WritableController
       redirect_to post_path(@post) and return
     end
 
-    @post.destroy!
-    flash[:success] = "Post deleted."
-    redirect_to boards_path
+    if @post.destroy
+      flash[:success] = "Post deleted."
+      redirect_to boards_path
+    else
+      flash.now[:error] = {}
+      flash.now[:error][:message] = "Your post could not be deleted because of the following problems:"
+      flash.now[:error][:array] = @post.errors.full_messages
+      redirect_to post_path(@post)
+    end
   end
 
   def search
