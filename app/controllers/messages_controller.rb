@@ -44,9 +44,15 @@ class MessagesController < ApplicationController
       render action: :new and return
     end
 
-    @message.save!
-    flash[:success] = "Message sent!"
-    redirect_to messages_path(view: 'inbox')
+    if @message.save
+      flash[:success] = "Message sent!"
+      redirect_to messages_path(view: 'inbox')
+    else
+      flash[:error] = "Message could not be saved."
+      editor_setup
+      @page_title = 'Compose Message'
+      render action: :new and return
+    end
   end
 
   def show
