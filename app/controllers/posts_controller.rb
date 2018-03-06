@@ -247,6 +247,7 @@ class PostsController < WritableController
         flash[:success] = "Post has been marked #{params[:status]}."
       else
         flash[:error] = "Status could not be updated."
+      end
     end
     redirect_to post_path(@post)
   end
