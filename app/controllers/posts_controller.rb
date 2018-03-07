@@ -272,9 +272,9 @@ class PostsController < WritableController
       flash[:success] = "Post deleted."
       redirect_to boards_path
     else
-      flash.now[:error] = {}
-      flash.now[:error][:message] = "Your post could not be deleted because of the following problems:"
-      flash.now[:error][:array] = @post.errors.full_messages
+      flash[:error] = {}
+      flash[:error][:message] = "Your post could not be deleted because of the following problems:"
+      flash[:error][:array] = @post.errors.full_messages
       redirect_to post_path(@post)
     end
   end

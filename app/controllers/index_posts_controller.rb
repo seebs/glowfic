@@ -53,9 +53,9 @@ class IndexPostsController < ApplicationController
     if index_post.destroy
       flash[:success] = "Post removed from index."
     else
-      flash.now[:error] = {}
-      flash.now[:error][:message] = "Post could not be removed from index."
-      flash.now[:error][:array] = @index_post.errors.full_messages
+      flash[:error] = {}
+      flash[:error][:message] = "Post could not be removed from index."
+      flash[:error][:array] = @index_post.errors.full_messages
     end
     redirect_to index_path(index_post.index)
   end

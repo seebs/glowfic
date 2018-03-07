@@ -75,9 +75,9 @@ class TagsController < ApplicationController
       url_params[:view] = params[:view] if params[:view].present?
       redirect_to tags_path(url_params)
     else
-      flash.now[:error] = {}
-      flash.now[:error][:message] = "Tag could not be deleted because of the following problems:"
-      flash.now[:error][:array] = @tag.errors.full_messages
+      flash[:error] = {}
+      flash[:error][:message] = "Tag could not be deleted because of the following problems:"
+      flash[:error][:array] = @tag.errors.full_messages
       redirect_to tag_path(@tag)
     end
   end

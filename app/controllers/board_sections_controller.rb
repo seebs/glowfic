@@ -62,9 +62,9 @@ class BoardSectionsController < ApplicationController
       flash[:success] = "Section deleted."
       redirect_to edit_board_path(@board_section.board)
     else
-      flash.now[:error] = {}
-      flash.now[:error][:message] = "Section could not be deleted."
-      flash.now[:error][:array] = @board_section.errors.full_messages
+      flash[:error] = {}
+      flash[:error][:message] = "Section could not be deleted."
+      flash[:error][:array] = @board_section.errors.full_messages
       redirect_to board_section_path(@board_section)
     end
   end

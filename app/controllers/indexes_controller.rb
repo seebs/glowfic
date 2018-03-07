@@ -65,9 +65,9 @@ class IndexesController < ApplicationController
       flash[:success] = "Index deleted."
       redirect_to indexes_path
     else
-      flash.now[:error] = {}
-      flash.now[:error][:message] = "Index could not be saved because of the following problems:"
-      flash.now[:error][:array] = @index.errors.full_messages
+      flash[:error] = {}
+      flash[:error][:message] = "Index could not be deleted because of the following problems:"
+      flash[:error][:array] = @index.errors.full_messages
       redirect_to index_path(@index)
     end
   end

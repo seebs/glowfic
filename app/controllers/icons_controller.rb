@@ -115,9 +115,9 @@ class IconsController < UploadingController
       redirect_to gallery_path(gallery) and return if gallery
       redirect_to galleries_path
     else
-      flash.now[:error] = {}
-      flash.now[:error][:message] = "Your icon could not be deleted due to the following problems:"
-      flash.now[:error][:array] = @icon.errors.full_messages
+      flash[:error] = {}
+      flash[:error][:message] = "Your icon could not be deleted due to the following problems:"
+      flash[:error][:array] = @icon.errors.full_messages
       redirect_to gallery_path(gallery)
     end
   end

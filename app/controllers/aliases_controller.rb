@@ -29,9 +29,9 @@ class AliasesController < ApplicationController
     if @alias.destroy
       flash[:success] = "Alias removed."
     else
-      flash.now[:error] = {}
-      flash.now[:error][:message] = "Alias could not be deleted."
-      flash.now[:error][:array] = @alias.errors.full_messages
+      flash[:error] = {}
+      flash[:error][:message] = "Alias could not be deleted."
+      flash[:error][:array] = @alias.errors.full_messages
     end
     redirect_to edit_character_path(@character)
   end

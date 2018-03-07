@@ -55,9 +55,9 @@ class TemplatesController < ApplicationController
       flash[:success] = "Template deleted successfully."
       redirect_to characters_path
     else
-      flash.now[:error] = {}
-      flash.now[:error][:message] = "Template could not be deleted because of the following problems:"
-      flash.now[:error][:array] = @template.errors.full_messages
+      flash[:error] = {}
+      flash[:error][:message] = "Template could not be deleted because of the following problems:"
+      flash[:error][:array] = @template.errors.full_messages
       redirect_to template_path(@template)
     end
   end

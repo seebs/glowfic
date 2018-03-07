@@ -118,9 +118,9 @@ class CharactersController < ApplicationController
       flash[:success] = "Character deleted successfully."
       redirect_to characters_path
     else
-      flash.now[:error] = {}
-      flash.now[:error][:message] = "Your character could not be deleted."
-      flash.now[:error][:array] = @character.errors.full_messages
+      flash[:error] = {}
+      flash[:error][:message] = "Your character could not be deleted."
+      flash[:error][:array] = @character.errors.full_messages
       redirect_to character_path(@character)
     end
   end
