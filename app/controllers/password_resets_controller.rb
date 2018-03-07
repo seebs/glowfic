@@ -53,13 +53,18 @@ class PasswordResetsController < ApplicationController
     @password_reset.user.password_confirmation = params[:password_confirmation]
     @password_reset.user.validate_password = true
 
-    if @password_reset.user.save && @password_reset.update(used: true)
+    begin
+      User.transaction do
+        @password_reset.user.save!
+        @password_reset.update!(used: true)
+      end
       flash[:success] = "Password successfully changed."
       redirect_to root_url
-    else
+    rescue ActiveRecord::RecordInvalid
       flash.now[:error] = {}
       flash.now[:error][:message] = "Could not update password."
       flash.now[:error][:array] = @password_reset.user.errors.full_messages
+      flash.now[:error][:array] = @password_reset.errors.full_messages
       @page_title = 'Change Password'
       render :show and return
     end
