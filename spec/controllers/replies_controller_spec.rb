@@ -717,7 +717,7 @@ RSpec.describe RepliesController do
       login_as(reply.user)
       delete :destroy, params: { id: reply.id }
       expect(response).to redirect_to(post_url(reply.post, page: 1))
-      expect(flash[:success]).to eq("Post deleted.")
+      expect(flash[:success]).to eq("Reply deleted.")
       expect(Reply.find_by_id(reply.id)).to be_nil
     end
 
@@ -726,7 +726,7 @@ RSpec.describe RepliesController do
       login_as(create(:admin_user))
       delete :destroy, params: { id: reply.id }
       expect(response).to redirect_to(post_url(reply.post, page: 1))
-      expect(flash[:success]).to eq("Post deleted.")
+      expect(flash[:success]).to eq("Reply deleted.")
       expect(Reply.find_by_id(reply.id)).to be_nil
     end
 
