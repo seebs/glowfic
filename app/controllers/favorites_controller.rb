@@ -88,7 +88,8 @@ class FavoritesController < ApplicationController
       redirect_to favorites_path and return
     end
 
-    if fav.destroy
+    begin
+      fav.destroy!
       flash[:success] = "Favorite removed."
       if fav.favorite_type == User.to_s
         redirect_to user_path(fav.favorite)
@@ -97,11 +98,11 @@ class FavoritesController < ApplicationController
       else
         redirect_to board_path(fav.favorite)
       end
-    else
+    rescue ActiveRecord::RecordNotDestroyed
       flash[:error] = {}
-      flash[:error][:message] = "Your favorite could not be deleted because of the following problems:"
+      flash[:error][:message] = "Favorite could not be deleted."
       flash[:error][:array] = fav.errors.full_messages
-      redirect_to fav_path
+      redirect_to favorites_path
     end
   end
 end

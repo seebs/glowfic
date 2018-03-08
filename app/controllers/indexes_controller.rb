@@ -61,15 +61,14 @@ class IndexesController < ApplicationController
   end
 
   def destroy
-    if @index.destroy
-      flash[:success] = "Index deleted."
-      redirect_to indexes_path
-    else
-      flash[:error] = {}
-      flash[:error][:message] = "Index could not be deleted because of the following problems:"
-      flash[:error][:array] = @index.errors.full_messages
-      redirect_to index_path(@index)
-    end
+    @index.destroy!
+    flash[:success] = "Index deleted."
+    redirect_to indexes_path
+  rescue ActiveRecord::RecordNotDestroyed
+    flash[:error] = {}
+    flash[:error][:message] = "Index could not be deleted."
+    flash[:error][:array] = @index.errors.full_messages
+    redirect_to index_path(@index)
   end
 
   private

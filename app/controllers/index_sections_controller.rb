@@ -61,11 +61,12 @@ class IndexSectionsController < ApplicationController
   end
 
   def destroy
-    if @section.destroy
+    begin
+      @section.destroy!
       flash[:success] = "Index section deleted."
-    else
+    rescue ActiveRecord::RecordNotDestroyed
       flash[:error] = {}
-      flash[:error][:message] = "Index section could not be deleted because of the following problems:"
+      flash[:error][:message] = "Index section could not be deleted."
       flash[:error][:array] = @section.errors.full_messages
     end
     redirect_to index_path(@section.index)

@@ -67,16 +67,17 @@ class TagsController < ApplicationController
       redirect_to tag_path(@tag) and return
     end
 
-    if @tag.destroy
+    begin
+      @tag.destroy!
       flash[:success] = "Tag deleted."
 
       url_params = {}
       url_params[:page] = page if params[:page].present?
       url_params[:view] = params[:view] if params[:view].present?
       redirect_to tags_path(url_params)
-    else
+    rescue ActiveRecord::RecordNotDestroyed
       flash[:error] = {}
-      flash[:error][:message] = "Tag could not be deleted because of the following problems:"
+      flash[:error][:message] = "Tag could not be deleted."
       flash[:error][:array] = @tag.errors.full_messages
       redirect_to tag_path(@tag)
     end

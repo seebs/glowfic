@@ -114,12 +114,13 @@ class CharactersController < ApplicationController
       redirect_to characters_path and return
     end
 
-    if @character.destroy
+    begin
+      @character.destroy!
       flash[:success] = "Character deleted successfully."
       redirect_to characters_path
-    else
+    rescue ActiveRecord::RecordNotDestroyed
       flash[:error] = {}
-      flash[:error][:message] = "Your character could not be deleted."
+      flash[:error][:message] = "Character could not be deleted."
       flash[:error][:array] = @character.errors.full_messages
       redirect_to character_path(@character)
     end
